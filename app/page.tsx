@@ -10,29 +10,9 @@ import BlogCard from '@/components/BlogCard'
 import QuizCard from '@/components/QuizCard'
 import { fadeIn, slideUp } from '@/utils/motion'
 import { client } from '@/lib/sanity'
+import { zodiacSigns } from '@/utils/zodiacData'
 
 // Define types for fetched data
-interface ZodiacSign {
-  _id: string
-  name: string
-  symbol: string
-  dates: string
-  horoscope: string
-  luckyNumber: number
-  mood: string
-  love: string
-  career: string
-  health: string
-  element: string
-  quality: string
-  rulingPlanet: string
-  luckyColor: string
-  strengths: string[]
-  weaknesses: string[]
-  compatible: string[]
-  challenging: string[]
-}
-
 interface BlogPost {
   _id: string
   title: string
@@ -75,7 +55,6 @@ const getIcon = (type: string) => {
 
 const Home = () => {
   const [data, setData] = useState({
-    zodiacSigns: [] as ZodiacSign[],
     latestPosts: [] as BlogPost[],
     quizzesPreview: [] as Quiz[],
     loading: true,
@@ -84,39 +63,29 @@ const Home = () => {
 
   useEffect(() => {
     let isMounted = true
-
     const fetchHomePageData = async () => {
       try {
         console.log('Starting to fetch home page data...')
 
-        const zodiacSignsQuery = `*[_type == "zodiacSign"] | order(orderRank asc) {
-          _id, name, symbol, dates, horoscope, luckyNumber, mood, love, career, health,
-          element, quality, rulingPlanet, luckyColor, strengths, weaknesses, compatible, challenging
-        }`
-
         const blogPostsQuery = `*[_type == "blogPost"] | order(publishedAt desc) [0...3] {
           _id, title, excerpt, "content": rawContent, author, date, category, mainImage, tags
         }`
-
         const quizzesQuery = `*[_type == "quiz"] | order(orderRank asc) [0...3] {
           _id, title, description, type, difficulty, duration, participants, tags
         }`
 
-        const [zodiacSigns, latestPosts, quizzesPreview] = await Promise.all([
-          client.fetch<ZodiacSign[]>(zodiacSignsQuery),
+        const [latestPosts, quizzesPreview] = await Promise.all([
           client.fetch<BlogPost[]>(blogPostsQuery),
           client.fetch<Quiz[]>(quizzesQuery),
         ])
 
         if (isMounted) {
           console.log('Data fetched successfully:', {
-            zodiacCount: zodiacSigns?.length || 0,
+            zodiacCount: zodiacSigns.length,
             blogCount: latestPosts?.length || 0,
             quizCount: quizzesPreview?.length || 0,
           })
-
           setData({
-            zodiacSigns: zodiacSigns || [],
             latestPosts: latestPosts || [],
             quizzesPreview: quizzesPreview || [],
             loading: false,
@@ -125,7 +94,6 @@ const Home = () => {
         }
       } catch (error) {
         console.error('Error fetching home page data:', error)
-
         if (isMounted) {
           setData((prev) => ({
             ...prev,
@@ -138,13 +106,12 @@ const Home = () => {
 
     fetchHomePageData()
 
-    // Cleanup function
     return () => {
       isMounted = false
     }
-  }, []) // Empty dependency array - this will only run once
+  }, [])
 
-  const { zodiacSigns, latestPosts, quizzesPreview, loading, error } = data
+  const { latestPosts, quizzesPreview, loading, error } = data
 
   return (
     <div className="min-h-screen">
@@ -190,33 +157,43 @@ const Home = () => {
               Get a glimpse of what the stars have in store
             </p>
           </div>
-          {zodiacSigns.length > 0 ? (
-            <>
-              <div className="grid md:grid-cols-3 gap-8">
-                {zodiacSigns.slice(0, 3).map((sign, index) => (
-                  <HoroscopeCard
-                    key={sign._id}
-                    sign={sign}
-                    delay={index * 0.1}
-                  />
-                ))}
-              </div>
-              <div className="text-center mt-8">
-                <Link
-                  href="/horoscope"
-                  className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-full hover:from-blue-600 hover:to-purple-700 transition-all duration-300"
-                >
-                  View All Signs
-                </Link>
-              </div>
-            </>
-          ) : (
-            <div className="text-center py-8">
-              <p className="text-purple-200">
-                No zodiac signs available at the moment.
-              </p>
-            </div>
-          )}
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {zodiacSigns.slice(0, 3).map((sign, index) => (
+              <HoroscopeCard
+                key={sign.name}
+                sign={{
+                  _id: sign.name,
+                  name: sign.name,
+                  symbol: sign.symbol,
+                  dates: sign.dates,
+                  horoscope: sign.horoscope,
+                  luckyNumber: sign.luckyNumber,
+                  mood: sign.mood,
+                  love: sign.love,
+                  career: sign.career,
+                  health: sign.health,
+                  element: sign.element,
+                  quality: sign.quality,
+                  rulingPlanet: sign.rulingPlanet,
+                  luckyColor: sign.luckyColor,
+                  strengths: sign.strengths,
+                  weaknesses: sign.weaknesses,
+                  compatible: sign.compatible,
+                  challenging: sign.challenging,
+                }}
+                delay={index * 0.1}
+              />
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link
+              href="/horoscope"
+              className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-full hover:from-blue-600 hover:to-purple-700 transition-all duration-300"
+            >
+              View All Signs
+            </Link>
+          </div>
         </motion.div>
       </section>
 

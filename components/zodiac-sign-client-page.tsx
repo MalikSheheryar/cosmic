@@ -1,35 +1,12 @@
 'use client'
 
 import type React from 'react'
-
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Star, Heart, Briefcase, Shield, ArrowLeft } from 'lucide-react'
 import AffiliateButton from '@/components/AffiliateButton'
 import { fadeIn, slideUp } from '@/utils/motion'
-
-// Define type for fetched data
-interface ZodiacSign {
-  _id: string
-  name: string
-  symbol: string
-  dates: string
-  element: string
-  quality: string
-  rulingPlanet: string
-  luckyNumber: number
-  luckyColor: string
-  mood: string
-  personality: string
-  horoscope: string
-  love: string
-  career: string
-  health: string
-  strengths: string[]
-  weaknesses: string[]
-  compatible: string[]
-  challenging: string[]
-}
+import type { ZodiacSign } from '@/utils/zodiacData'
 
 interface ZodiacSignClientPageProps {
   zodiacData: ZodiacSign | null
@@ -102,15 +79,17 @@ const ZodiacSignClientPage: React.FC<ZodiacSignClientPageProps> = ({
                     Strengths
                   </h3>
                   <ul className="space-y-2">
-                    {zodiacData.strengths.map((strength, index) => (
-                      <li
-                        key={index}
-                        className="text-green-300 flex items-center gap-2"
-                      >
-                        <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-                        {strength}
-                      </li>
-                    ))}
+                    {zodiacData.strengths.map(
+                      (strength: string, index: number) => (
+                        <li
+                          key={index}
+                          className="text-green-300 flex items-center gap-2"
+                        >
+                          <span className="w-2 h-2 bg-green-400 rounded-full"></span>
+                          {strength}
+                        </li>
+                      )
+                    )}
                   </ul>
                 </div>
                 <div>
@@ -118,15 +97,17 @@ const ZodiacSignClientPage: React.FC<ZodiacSignClientPageProps> = ({
                     Challenges
                   </h3>
                   <ul className="space-y-2">
-                    {zodiacData.weaknesses.map((weakness, index) => (
-                      <li
-                        key={index}
-                        className="text-orange-300 flex items-center gap-2"
-                      >
-                        <span className="w-2 h-2 bg-orange-400 rounded-full"></span>
-                        {weakness}
-                      </li>
-                    ))}
+                    {zodiacData.weaknesses.map(
+                      (weakness: string, index: number) => (
+                        <li
+                          key={index}
+                          className="text-orange-300 flex items-center gap-2"
+                        >
+                          <span className="w-2 h-2 bg-orange-400 rounded-full"></span>
+                          {weakness}
+                        </li>
+                      )
+                    )}
                   </ul>
                 </div>
               </div>
@@ -143,7 +124,6 @@ const ZodiacSignClientPage: React.FC<ZodiacSignClientPageProps> = ({
                   {zodiacData.love}
                 </p>
               </div>
-
               <div className="bg-gradient-to-br from-green-800 to-emerald-800 p-6 rounded-xl border border-green-500">
                 <Briefcase className="w-8 h-8 text-green-400 mb-4" />
                 <h3 className="text-xl font-bold text-white mb-3">
@@ -153,7 +133,6 @@ const ZodiacSignClientPage: React.FC<ZodiacSignClientPageProps> = ({
                   {zodiacData.career}
                 </p>
               </div>
-
               <div className="bg-gradient-to-br from-blue-800 to-cyan-800 p-6 rounded-xl border border-blue-500">
                 <Shield className="w-8 h-8 text-blue-400 mb-4" />
                 <h3 className="text-xl font-bold text-white mb-3">
@@ -176,14 +155,16 @@ const ZodiacSignClientPage: React.FC<ZodiacSignClientPageProps> = ({
                     Most Compatible With
                   </h3>
                   <div className="flex flex-wrap gap-3">
-                    {zodiacData.compatible.map((compatibleSign, index) => (
-                      <span
-                        key={index}
-                        className="bg-green-700 text-green-200 px-4 py-2 rounded-full text-sm font-semibold"
-                      >
-                        {compatibleSign}
-                      </span>
-                    ))}
+                    {zodiacData.compatible.map(
+                      (compatibleSign: string, index: number) => (
+                        <span
+                          key={index}
+                          className="bg-green-700 text-green-200 px-4 py-2 rounded-full text-sm font-semibold"
+                        >
+                          {compatibleSign}
+                        </span>
+                      )
+                    )}
                   </div>
                 </div>
                 <div>
@@ -191,14 +172,16 @@ const ZodiacSignClientPage: React.FC<ZodiacSignClientPageProps> = ({
                     Challenging Matches
                   </h3>
                   <div className="flex flex-wrap gap-3">
-                    {zodiacData.challenging.map((challengingSign, index) => (
-                      <span
-                        key={index}
-                        className="bg-red-700 text-red-200 px-4 py-2 rounded-full text-sm font-semibold"
-                      >
-                        {challengingSign}
-                      </span>
-                    ))}
+                    {zodiacData.challenging.map(
+                      (challengingSign: string, index: number) => (
+                        <span
+                          key={index}
+                          className="bg-red-700 text-red-200 px-4 py-2 rounded-full text-sm font-semibold"
+                        >
+                          {challengingSign}
+                        </span>
+                      )
+                    )}
                   </div>
                 </div>
               </div>

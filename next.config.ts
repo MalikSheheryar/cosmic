@@ -31,14 +31,10 @@ const nextConfig: NextConfig = {
     ],
     unoptimized: true,
   },
-  // Netlify-specific configurations
+  // Enable static export for manual deployment
   output: 'export',
   trailingSlash: true,
   distDir: 'out',
-  // Disable server-side features for static export
-  experimental: {
-    appDir: true,
-  },
 }
 
 export default nextConfig

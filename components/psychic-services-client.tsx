@@ -1,7 +1,6 @@
 'use client'
 
 import type React from 'react'
-
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
@@ -15,31 +14,11 @@ import {
   Users,
   Award,
   CheckCircle,
-  LucideIcon,
+  type LucideIcon,
 } from 'lucide-react'
-
 import AffiliateButton from '@/components/AffiliateButton'
 import { fadeIn, slideUp } from '@/utils/motion'
-
-// Define types for fetched data
-interface PsychicService {
-  _id: string
-  title: string
-  icon: string // Store Lucide icon name as string
-  description: string
-  features: string[]
-  price: string
-  rating: number
-  specialists: number
-}
-
-interface Testimonial {
-  _id: string
-  name: string
-  service: string
-  rating: number
-  text: string
-}
+import type { PsychicService, Testimonial } from '@/utils/psychicServicesData'
 
 interface PsychicServicesClientProps {
   services: PsychicService[]
@@ -71,10 +50,10 @@ const PsychicServicesClient: React.FC<PsychicServicesClientProps> = ({
   testimonials,
 }) => {
   const [selectedService, setSelectedService] = useState(
-    services.length > 0 ? services[0]._id : ''
+    services.length > 0 ? services[0].id : ''
   )
 
-  const selectedServiceData = services.find((s) => s._id === selectedService)
+  const selectedServiceData = services.find((s) => s.id === selectedService)
 
   return (
     <div className="min-h-screen py-20 px-4">
@@ -148,15 +127,15 @@ const PsychicServicesClient: React.FC<PsychicServicesClientProps> = ({
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <motion.div
-                key={service._id}
+                key={service.id}
                 {...fadeIn}
                 transition={{ delay: index * 0.1 }}
                 className={`bg-gradient-to-br from-purple-800 to-indigo-800 p-6 rounded-2xl border transition-all duration-300 cursor-pointer transform hover:scale-105 ${
-                  selectedService === service._id
+                  selectedService === service.id
                     ? 'border-purple-400 ring-2 ring-purple-400'
                     : 'border-purple-500 hover:border-purple-400'
                 }`}
-                onClick={() => setSelectedService(service._id)}
+                onClick={() => setSelectedService(service.id)}
               >
                 <div className="text-purple-300 mb-4">
                   {getLucideIcon(service.icon)}
@@ -167,7 +146,6 @@ const PsychicServicesClient: React.FC<PsychicServicesClientProps> = ({
                 <p className="text-purple-200 text-sm mb-4">
                   {service.description}
                 </p>
-
                 <div className="space-y-2 mb-4">
                   {service.features.map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-2">
@@ -176,7 +154,6 @@ const PsychicServicesClient: React.FC<PsychicServicesClientProps> = ({
                     </div>
                   ))}
                 </div>
-
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-white font-semibold">
                     {service.price}
@@ -186,7 +163,6 @@ const PsychicServicesClient: React.FC<PsychicServicesClientProps> = ({
                     <span className="text-white text-sm">{service.rating}</span>
                   </div>
                 </div>
-
                 <p className="text-purple-300 text-xs">
                   {service.specialists} specialists available
                 </p>
@@ -275,7 +251,7 @@ const PsychicServicesClient: React.FC<PsychicServicesClientProps> = ({
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <motion.div
-                key={testimonial._id}
+                key={index}
                 {...fadeIn}
                 transition={{ delay: index * 0.1 }}
                 className="bg-gradient-to-br from-indigo-800 to-purple-800 p-6 rounded-2xl border border-purple-500"
