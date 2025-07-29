@@ -1,8 +1,8 @@
 'use client'
-
 import type React from 'react'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import {
   Star,
   Heart,
@@ -14,9 +14,9 @@ import {
   Users,
   Award,
   CheckCircle,
+  ExternalLink,
   type LucideIcon,
 } from 'lucide-react'
-import AffiliateButton from '@/components/AffiliateButton'
 import { fadeIn, slideUp } from '@/utils/motion'
 import type { PsychicService, Testimonial } from '@/utils/psychicServicesData'
 
@@ -52,7 +52,6 @@ const PsychicServicesClient: React.FC<PsychicServicesClientProps> = ({
   const [selectedService, setSelectedService] = useState(
     services.length > 0 ? services[0].id : ''
   )
-
   const selectedServiceData = services.find((s) => s.id === selectedService)
 
   return (
@@ -163,9 +162,20 @@ const PsychicServicesClient: React.FC<PsychicServicesClientProps> = ({
                     <span className="text-white text-sm">{service.rating}</span>
                   </div>
                 </div>
-                <p className="text-purple-300 text-xs">
+                <p className="text-purple-300 text-xs mb-4">
                   {service.specialists} specialists available
                 </p>
+
+                {/* Service Action Buttons */}
+                <div className="flex flex-col gap-2">
+                  <Link
+                    href="#" // Replace with actual service link
+                    className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-4 py-2 rounded-full text-sm font-bold text-center transition-all duration-300 flex items-center justify-center gap-2"
+                  >
+                    Start Reading
+                    <ExternalLink className="w-4 h-4" />
+                  </Link>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -185,14 +195,20 @@ const PsychicServicesClient: React.FC<PsychicServicesClientProps> = ({
                 {selectedServiceData.description}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <AffiliateButton
-                  text={`Start ${selectedServiceData.title} Now`}
-                  className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-4 rounded-full text-lg font-bold transform hover:scale-105 transition-all duration-300"
-                />
-                <AffiliateButton
-                  text="Browse All Advisors"
-                  className="bg-transparent border-2 border-yellow-400 text-yellow-300 hover:bg-yellow-400 hover:text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300"
-                />
+                <Link
+                  href="#" // Replace with main service link
+                  className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-4 rounded-full text-lg font-bold transform hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-2"
+                >
+                  Start {selectedServiceData.title} Now
+                  <ExternalLink className="w-5 h-5" />
+                </Link>
+                <Link
+                  href="#" // Replace with advisors browse link
+                  className="bg-transparent border-2 border-yellow-400 text-yellow-300 hover:bg-yellow-400 hover:text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 inline-flex items-center justify-center gap-2"
+                >
+                  Browse All Advisors
+                  <Users className="w-5 h-5" />
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -292,14 +308,20 @@ const PsychicServicesClient: React.FC<PsychicServicesClientProps> = ({
               first reading
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <AffiliateButton
-                text="Claim Your Free Reading"
-                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-10 py-4 rounded-full text-xl font-bold transform hover:scale-105 transition-all duration-300 shadow-lg"
-              />
-              <AffiliateButton
-                text="View All Offers"
-                className="bg-transparent border-2 border-green-400 text-green-300 hover:bg-green-400 hover:text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300"
-              />
+              <Link
+                href="#" // Replace with free reading claim link
+                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-10 py-4 rounded-full text-xl font-bold transform hover:scale-105 transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-2"
+              >
+                Claim Your Free Reading
+                <Sparkles className="w-6 h-6" />
+              </Link>
+              <Link
+                href="#" // Replace with all offers link
+                className="bg-transparent border-2 border-green-400 text-green-300 hover:bg-green-400 hover:text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 inline-flex items-center justify-center gap-2"
+              >
+                View All Offers
+                <ExternalLink className="w-5 h-5" />
+              </Link>
             </div>
             <p className="text-yellow-300 text-sm mt-4">
               *Offer valid for new customers only. Terms and conditions apply.

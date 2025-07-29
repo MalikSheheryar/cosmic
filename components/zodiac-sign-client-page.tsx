@@ -1,9 +1,15 @@
 'use client'
-
 import type React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { Star, Heart, Briefcase, Shield, ArrowLeft } from 'lucide-react'
+import {
+  Star,
+  Heart,
+  Briefcase,
+  Shield,
+  ArrowLeft,
+  Calendar,
+} from 'lucide-react'
 import AffiliateButton from '@/components/AffiliateButton'
 import { fadeIn, slideUp } from '@/utils/motion'
 import type { ZodiacSign } from '@/utils/zodiacData'
@@ -24,15 +30,22 @@ const ZodiacSignClientPage: React.FC<ZodiacSignClientPageProps> = ({
             The zodiac sign you're looking for doesn't exist.
           </p>
           <Link
-            href="/"
+            href="/horoscope"
             className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all duration-300"
           >
-            Go Home
+            Go to Horoscope
           </Link>
         </div>
       </div>
     )
   }
+
+  const today = new Date().toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
 
   return (
     <div className="min-h-screen py-20 px-4">
@@ -43,7 +56,7 @@ const ZodiacSignClientPage: React.FC<ZodiacSignClientPageProps> = ({
           className="flex items-center gap-2 text-purple-300 hover:text-white mb-8 transition-colors duration-300"
         >
           <ArrowLeft className="w-5 h-5" />
-          Back
+          Back to Daily Horoscope
         </Link>
 
         {/* Header */}
@@ -60,10 +73,78 @@ const ZodiacSignClientPage: React.FC<ZodiacSignClientPageProps> = ({
           </motion.div>
         </div>
 
+        {/* Today's Horoscope Section */}
+        <motion.div {...slideUp} className="mb-16">
+          <div className="bg-gradient-to-br from-indigo-900 to-purple-900 p-8 rounded-2xl border border-purple-500">
+            <div className="flex items-center gap-3 mb-6">
+              <Calendar className="w-8 h-8 text-yellow-400" />
+              <h2 className="text-3xl font-bold text-white">
+                Today's Horoscope
+              </h2>
+            </div>
+            <p className="text-xl text-purple-200 mb-4">{today}</p>
+            <p className="text-purple-200 text-lg leading-relaxed mb-8">
+              {zodiacData.horoscope}
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="bg-black bg-opacity-30 p-4 rounded-lg text-center">
+                <span className="text-purple-300 text-sm">Lucky Number</span>
+                <div className="text-2xl font-bold text-white mt-2">
+                  {zodiacData.luckyNumber}
+                </div>
+              </div>
+              <div className="bg-black bg-opacity-30 p-4 rounded-lg text-center">
+                <span className="text-purple-300 text-sm">Lucky Color</span>
+                <div className="text-2xl font-bold text-white mt-2">
+                  {zodiacData.luckyColor}
+                </div>
+              </div>
+              <div className="bg-black bg-opacity-30 p-4 rounded-lg text-center">
+                <span className="text-purple-300 text-sm">Mood</span>
+                <div className="text-2xl font-bold text-white mt-2">
+                  {zodiacData.mood}
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-3 gap-8 mb-16">
           {/* Left Column - Overview */}
           <motion.div {...slideUp} className="lg:col-span-2 space-y-8">
+            {/* Today's Key Areas */}
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="bg-gradient-to-br from-pink-800 to-red-800 p-6 rounded-xl border border-pink-500">
+                <Heart className="w-8 h-8 text-pink-400 mb-4" />
+                <h3 className="text-xl font-bold text-white mb-3">
+                  Love & Relationships
+                </h3>
+                <p className="text-pink-200 text-sm leading-relaxed">
+                  {zodiacData.love}
+                </p>
+              </div>
+              <div className="bg-gradient-to-br from-green-800 to-emerald-800 p-6 rounded-xl border border-green-500">
+                <Briefcase className="w-8 h-8 text-green-400 mb-4" />
+                <h3 className="text-xl font-bold text-white mb-3">
+                  Career & Money
+                </h3>
+                <p className="text-green-200 text-sm leading-relaxed">
+                  {zodiacData.career}
+                </p>
+              </div>
+              <div className="bg-gradient-to-br from-blue-800 to-cyan-800 p-6 rounded-xl border border-blue-500">
+                <Shield className="w-8 h-8 text-blue-400 mb-4" />
+                <h3 className="text-xl font-bold text-white mb-3">
+                  Health & Wellness
+                </h3>
+                <p className="text-blue-200 text-sm leading-relaxed">
+                  {zodiacData.health}
+                </p>
+              </div>
+            </div>
+
             {/* Personality Overview */}
             <div className="bg-gradient-to-br from-purple-800 to-indigo-800 p-8 rounded-2xl border border-purple-500">
               <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
@@ -110,37 +191,6 @@ const ZodiacSignClientPage: React.FC<ZodiacSignClientPageProps> = ({
                     )}
                   </ul>
                 </div>
-              </div>
-            </div>
-
-            {/* Life Areas */}
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-gradient-to-br from-pink-800 to-red-800 p-6 rounded-xl border border-pink-500">
-                <Heart className="w-8 h-8 text-pink-400 mb-4" />
-                <h3 className="text-xl font-bold text-white mb-3">
-                  Love & Relationships
-                </h3>
-                <p className="text-pink-200 text-sm leading-relaxed">
-                  {zodiacData.love}
-                </p>
-              </div>
-              <div className="bg-gradient-to-br from-green-800 to-emerald-800 p-6 rounded-xl border border-green-500">
-                <Briefcase className="w-8 h-8 text-green-400 mb-4" />
-                <h3 className="text-xl font-bold text-white mb-3">
-                  Career & Money
-                </h3>
-                <p className="text-green-200 text-sm leading-relaxed">
-                  {zodiacData.career}
-                </p>
-              </div>
-              <div className="bg-gradient-to-br from-blue-800 to-cyan-800 p-6 rounded-xl border border-blue-500">
-                <Shield className="w-8 h-8 text-blue-400 mb-4" />
-                <h3 className="text-xl font-bold text-white mb-3">
-                  Health & Wellness
-                </h3>
-                <p className="text-blue-200 text-sm leading-relaxed">
-                  {zodiacData.health}
-                </p>
               </div>
             </div>
 

@@ -73,7 +73,7 @@ const ContactClient = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: 'Email Us',
-      info: 'info@cosmicinsights.com',
+      info: 'info@AstroLoveGuides.com',
       description: 'Send us your questions anytime',
     },
     {
@@ -348,10 +348,10 @@ const ContactClient = () => {
           <div className="bg-gradient-to-r from-purple-800 to-pink-800 p-8 rounded-2xl border border-purple-500">
             <Star className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-white mb-4">
-              About CosmicInsights
+              About AstroLoveGuides
             </h2>
             <p className="text-purple-200 mb-6 max-w-3xl mx-auto">
-              CosmicInsights is your trusted source for astrological guidance,
+              AstroLoveGuides is your trusted source for astrological guidance,
               daily horoscopes, and connections to professional psychic
               services. We're passionate about helping people discover their
               cosmic potential and find clarity in their spiritual journey.

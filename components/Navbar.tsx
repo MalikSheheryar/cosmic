@@ -3,9 +3,10 @@
 import { useState } from 'react'
 import type React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Star, Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown } from 'lucide-react'
 import { zodiacSigns } from '@/utils/zodiacData'
 
 const Navbar: React.FC = () => {
@@ -31,8 +32,7 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <Star className="w-8 h-8 text-yellow-400" />
-            <span className="text-xl font-bold text-white">CosmicInsights</span>
+            <span className="text-xl font-bold text-white">AstroLoveGuide</span>
           </Link>
 
           {/* Desktop Navigation */}

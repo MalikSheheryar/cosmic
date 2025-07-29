@@ -4,40 +4,25 @@ import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import { Star, Heart, Briefcase } from 'lucide-react'
 import { fadeIn } from '@/utils/motion'
-// Update the HoroscopeCardProps interface to match the Sanity ZodiacSign type
+import type { ZodiacSign } from '@/utils/zodiacData'
+
 interface HoroscopeCardProps {
-  sign: {
-    _id: string
-    name: string
-    symbol: string
-    dates: string
-    horoscope: string
-    luckyNumber: number
-    mood: string
-    love: string
-    career: string
-    health: string
-    element: string
-    quality: string
-    rulingPlanet: string
-    luckyColor: string
-    strengths: string[]
-    weaknesses: string[]
-    compatible: string[]
-    challenging: string[]
-  }
+  sign: ZodiacSign
   isDetailed?: boolean
   delay?: number
 }
+
 const HoroscopeCard: React.FC<HoroscopeCardProps> = ({
   sign,
   isDetailed = false,
   delay = 0,
 }) => {
   const router = useRouter()
+
   const handleClick = () => {
     router.push(`/zodiac/${sign.name.toLowerCase()}`)
   }
+
   if (isDetailed) {
     return (
       <motion.div
@@ -51,6 +36,7 @@ const HoroscopeCard: React.FC<HoroscopeCardProps> = ({
           <h3 className="text-2xl font-bold text-white mb-2">{sign.name}</h3>
           <p className="text-purple-300 text-sm">{sign.dates}</p>
         </div>
+
         <div className="space-y-4">
           <div>
             <h4 className="text-lg font-semibold text-white mb-2">
@@ -60,6 +46,7 @@ const HoroscopeCard: React.FC<HoroscopeCardProps> = ({
               {sign.horoscope}
             </p>
           </div>
+
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-black bg-opacity-30 p-3 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
@@ -70,6 +57,7 @@ const HoroscopeCard: React.FC<HoroscopeCardProps> = ({
               </div>
               <p className="text-purple-200 text-xs">{sign.love}</p>
             </div>
+
             <div className="bg-black bg-opacity-30 p-3 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
                 <Briefcase className="w-4 h-4 text-green-400" />
@@ -80,6 +68,7 @@ const HoroscopeCard: React.FC<HoroscopeCardProps> = ({
               <p className="text-purple-200 text-xs">{sign.career}</p>
             </div>
           </div>
+
           <div className="flex justify-between text-sm">
             <div>
               <span className="text-purple-300">Lucky Number: </span>
@@ -93,6 +82,7 @@ const HoroscopeCard: React.FC<HoroscopeCardProps> = ({
             </div>
           </div>
         </div>
+
         <div className="mt-6 text-center">
           <button className="text-purple-300 hover:text-white text-sm font-semibold transition-colors duration-300">
             Read Full Profile →
@@ -101,6 +91,7 @@ const HoroscopeCard: React.FC<HoroscopeCardProps> = ({
       </motion.div>
     )
   }
+
   return (
     <motion.div
       {...fadeIn}
@@ -113,11 +104,13 @@ const HoroscopeCard: React.FC<HoroscopeCardProps> = ({
         <h3 className="text-xl font-bold text-white mb-1">{sign.name}</h3>
         <p className="text-purple-300 text-sm">{sign.dates}</p>
       </div>
+
       <div className="mb-4">
         <p className="text-purple-200 text-sm leading-relaxed line-clamp-3">
           {sign.horoscope}
         </p>
       </div>
+
       <div className="flex justify-between items-center text-xs">
         <div className="flex items-center gap-1">
           <Star className="w-3 h-3 text-yellow-400" />
@@ -125,6 +118,7 @@ const HoroscopeCard: React.FC<HoroscopeCardProps> = ({
         </div>
         <div className="text-purple-300">Mood: {sign.mood}</div>
       </div>
+
       <div className="mt-4 text-center">
         <span className="text-purple-300 hover:text-white text-sm font-semibold transition-colors duration-300">
           View Details →
@@ -133,4 +127,5 @@ const HoroscopeCard: React.FC<HoroscopeCardProps> = ({
     </motion.div>
   )
 }
+
 export default HoroscopeCard

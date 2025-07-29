@@ -1,23 +1,25 @@
 import Link from 'next/link'
 import { Star, Heart, Moon, Mail, Phone, MapPin } from 'lucide-react'
-import { client } from '@/lib/sanity'
 
-interface ZodiacSign {
-  _id: string
-  name: string
-  symbol: string
-}
+// Static zodiac signs data
+const zodiacSigns = [
+  { _id: '1', name: 'Aries', symbol: '♈' },
+  { _id: '2', name: 'Taurus', symbol: '♉' },
+  { _id: '3', name: 'Gemini', symbol: '♊' },
+  { _id: '4', name: 'Cancer', symbol: '♋' },
+  { _id: '5', name: 'Leo', symbol: '♌' },
+  { _id: '6', name: 'Virgo', symbol: '♍' },
+  { _id: '7', name: 'Libra', symbol: '♎' },
+  { _id: '8', name: 'Scorpio', symbol: '♏' },
+  { _id: '9', name: 'Sagittarius', symbol: '♐' },
+  { _id: '10', name: 'Capricorn', symbol: '♑' },
+  { _id: '11', name: 'Aquarius', symbol: '♒' },
+  { _id: '12', name: 'Pisces', symbol: '♓' },
+]
 
-async function getZodiacSignsForFooter() {
-  const query = `*[_type == "zodiacSign"] | order(orderRank asc) {
-    _id, name, symbol
-  }`
-  return client.fetch<ZodiacSign[]>(query)
-}
-
-const Footer = async () => {
-  const zodiacSigns = await getZodiacSignsForFooter()
+const Footer = () => {
   const currentYear = new Date().getFullYear()
+
   return (
     <footer className="bg-black bg-opacity-50 border-t border-purple-500 mt-20">
       <div className="max-w-7xl mx-auto px-4 py-12">
@@ -27,7 +29,7 @@ const Footer = async () => {
             <div className="flex items-center space-x-2 mb-4">
               <Star className="w-8 h-8 text-yellow-400" />
               <span className="text-xl font-bold text-white">
-                CosmicInsights
+                AstroLoveGuides
               </span>
             </div>
             <p className="text-purple-200 text-sm leading-relaxed mb-4">
@@ -41,6 +43,7 @@ const Footer = async () => {
               <Star className="w-5 h-5 text-yellow-400" />
             </div>
           </div>
+
           {/* Quick Links */}
           <div className="col-span-1">
             <h3 className="text-lg font-semibold text-white mb-4">
@@ -97,13 +100,14 @@ const Footer = async () => {
               </li>
             </ul>
           </div>
+
           {/* Zodiac Signs */}
           <div className="col-span-1">
             <h3 className="text-lg font-semibold text-white mb-4">
               Zodiac Signs
             </h3>
             <div className="grid grid-cols-2 gap-2">
-              {zodiacSigns?.map((sign) => (
+              {zodiacSigns.map((sign) => (
                 <Link
                   key={sign._id}
                   href={`/zodiac/${sign.name.toLowerCase()}`}
@@ -115,6 +119,7 @@ const Footer = async () => {
               ))}
             </div>
           </div>
+
           {/* Contact Info */}
           <div className="col-span-1">
             <h3 className="text-lg font-semibold text-white mb-4">Contact</h3>
@@ -122,7 +127,7 @@ const Footer = async () => {
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-purple-400" />
                 <span className="text-purple-200 text-sm">
-                  info@cosmicinsights.com
+                  info@AstroLoveGuides.com
                 </span>
               </div>
               <div className="flex items-center space-x-3">
@@ -146,11 +151,12 @@ const Footer = async () => {
             </div>
           </div>
         </div>
+
         {/* Bottom Bar */}
         <div className="border-t border-purple-500 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-purple-300 text-sm mb-4 md:mb-0">
-              © {new Date().getFullYear()} CosmicInsights. All rights reserved.
+              © {currentYear} AstroLoveGuides. All rights reserved.
             </p>
             <div className="flex space-x-6">
               <Link
@@ -184,4 +190,5 @@ const Footer = async () => {
     </footer>
   )
 }
+
 export default Footer
