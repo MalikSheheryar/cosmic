@@ -9,7 +9,7 @@ import { client } from '@/lib/sanity' // Import Sanity client
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Cosmic Insights',
+  title: 'Astro Love Guide',
   description:
     'Your trusted source for daily horoscopes, zodiac compatibility, and spiritual guidance.',
 }

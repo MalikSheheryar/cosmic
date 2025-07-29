@@ -30,9 +30,6 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const router = useRouter()
 
-  // Debug log
-  console.log('BlogClient received posts:', blogPosts)
-
   const categories = [
     'all',
     'horoscope',
@@ -65,15 +62,15 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-white mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            Cosmic Insights Blog
+            Astro Love Guide Blog
           </h1>
           <p className="text-xl text-purple-200">
             Discover the latest wisdom from the stars and beyond
           </p>
         </div>
-
         {/* Search and Filter */}
-        <motion.div {...slideUp} className="mb-12">
+        {/* Added relative z-10 and cursor-default to ensure this section is on top and not generally clickable */}
+        <motion.div {...slideUp} className="mb-12 relative z-10 cursor-default">
           <div className="bg-gradient-to-r from-purple-800 to-indigo-800 p-6 rounded-2xl border border-purple-500">
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1 relative">
@@ -83,13 +80,13 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
                   placeholder="Search articles..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-black bg-opacity-50 border border-purple-400 rounded-lg text-white placeholder-purple-300 focus:border-pink-400 focus:outline-none transition-colors duration-300"
+                  className="w-full pl-10 pr-4 py-3 bg-black bg-opacity-50 border border-purple-400 rounded-lg text-white placeholder-purple-300 focus:border-pink-400 focus:outline-none transition-colors duration-300 cursor-text" // Added cursor-text
                 />
               </div>
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-4 py-3 bg-black bg-opacity-50 border border-purple-400 rounded-lg text-white focus:border-pink-400 focus:outline-none transition-colors duration-300"
+                className="px-4 py-3 bg-black bg-opacity-50 border border-purple-400 rounded-lg text-white focus:border-pink-400 focus:outline-none transition-colors duration-300 cursor-pointer" // Added cursor-pointer
               >
                 {categories.map((category) => (
                   <option key={category} value={category}>
@@ -102,9 +99,12 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
             </div>
           </div>
         </motion.div>
-
         {/* Featured Article CTA */}
-        <motion.div {...slideUp} className="text-center mb-16">
+        {/* Added relative z-10 and cursor-default to ensure this section is on top and not generally clickable */}
+        <motion.div
+          {...slideUp}
+          className="text-center mb-16 relative z-10 cursor-default"
+        >
           <div className="bg-gradient-to-r from-purple-800 to-pink-800 p-8 rounded-2xl border border-purple-500">
             <h2 className="text-2xl font-bold text-white mb-4">
               Get Personalized Guidance
@@ -114,12 +114,13 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
               specifically to your situation
             </p>
             <AffiliateButton
+              href="https://www.test.com"
               text="Connect with Expert Advisor"
               className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-3 rounded-full font-semibold transform hover:scale-105 transition-all duration-300"
+              // No href provided, so it will default to '#' and its default behavior will be prevented by the updated component
             />
           </div>
         </motion.div>
-
         {/* Blog Posts Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {filteredPosts.map((post, index) => (
@@ -134,7 +135,6 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
             </motion.div>
           ))}
         </div>
-
         {filteredPosts.length === 0 && blogPosts.length > 0 && (
           <motion.div {...fadeIn} className="text-center py-12">
             <p className="text-purple-300 text-xl">
@@ -142,7 +142,6 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
             </p>
           </motion.div>
         )}
-
         {blogPosts.length === 0 && (
           <motion.div {...fadeIn} className="text-center py-12">
             <p className="text-purple-300 text-xl">
@@ -150,7 +149,6 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
             </p>
           </motion.div>
         )}
-
         {/* Newsletter CTA */}
         <motion.div {...fadeIn} className="text-center">
           <div className="bg-gradient-to-r from-indigo-800 to-purple-800 p-8 rounded-2xl border border-indigo-500">
@@ -166,10 +164,12 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
               <AffiliateButton
                 text="Get Live Reading Now"
                 className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300"
+                // No href provided, so it will default to '#' and its default behavior will be prevented
               />
               <AffiliateButton
                 text="Browse All Services"
                 className="bg-transparent border-2 border-yellow-400 text-yellow-300 hover:bg-yellow-400 hover:text-white px-8 py-3 rounded-full font-semibold transition-all duration-300"
+                // No href provided, so it will default to '#' and its default behavior will be prevented
               />
             </div>
           </div>

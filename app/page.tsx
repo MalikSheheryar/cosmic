@@ -1,5 +1,4 @@
 'use client'
-
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
@@ -66,14 +65,12 @@ const Home = () => {
     const fetchHomePageData = async () => {
       try {
         console.log('Starting to fetch home page data...')
-
         const blogPostsQuery = `*[_type == "blogPost"] | order(publishedAt desc) [0...3] {
           _id, title, excerpt, "content": rawContent, author, date, category, mainImage, tags
         }`
         const quizzesQuery = `*[_type == "quiz"] | order(orderRank asc) [0...3] {
           _id, title, description, type, difficulty, duration, participants, tags
         }`
-
         const [latestPosts, quizzesPreview] = await Promise.all([
           client.fetch<BlogPost[]>(blogPostsQuery),
           client.fetch<Quiz[]>(quizzesQuery),
@@ -166,7 +163,7 @@ const Home = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/quizzes"
+                href="/quizzes/-cosmic-compatibility-test"
                 className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-4 rounded-full text-lg font-bold transform hover:scale-105 transition-all duration-300 shadow-lg"
               >
                 💕 Take Compatibility Test
@@ -205,7 +202,6 @@ const Home = () => {
               Get a glimpse of what the stars have in store
             </p>
           </div>
-
           <div className="grid md:grid-cols-3 gap-8">
             {zodiacSigns.slice(0, 3).map((sign, index) => (
               <HoroscopeCard
@@ -310,7 +306,7 @@ const Home = () => {
         <motion.div {...fadeIn} className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Cosmic Insights
+              Astro Love Guide
             </h2>
             <p className="text-purple-200 text-lg">
               Latest wisdom from the stars

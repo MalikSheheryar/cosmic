@@ -12,7 +12,7 @@ interface BlogPost {
   _id: string
   title: string
   excerpt: string
-  content: any[]
+  content: any[] // Portable Text
   author: string
   date: string
   category: string
@@ -51,7 +51,6 @@ const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
           <ArrowLeft className="w-4 h-4" />
           Back to Blog
         </button>
-
         <article className="bg-gradient-to-br from-purple-900 to-indigo-900 rounded-2xl overflow-hidden border border-purple-500">
           <img
             src={
@@ -77,13 +76,10 @@ const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
                 <span className="capitalize">{post.category}</span>
               </div>
             </div>
-
             <h1 className="text-4xl font-bold text-white mb-6">{post.title}</h1>
-
             <div className="prose prose-purple prose-lg max-w-none">
               <PortableText value={post.content} />
             </div>
-
             {/* Affiliate CTAs within content */}
             <div className="my-12 p-6 bg-gradient-to-r from-purple-800 to-pink-800 rounded-xl border border-purple-500">
               <h3 className="text-xl font-bold text-white mb-4">
@@ -96,9 +92,9 @@ const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
               <AffiliateButton
                 text="Get Your Personal Reading"
                 className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300"
+                // No href provided, so it will default to '#' and its default behavior will be prevented
               />
             </div>
-
             <div className="border-t border-purple-500 pt-8 mt-8">
               <div className="flex flex-wrap gap-2 mb-6">
                 {post.tags?.map((tag) => (
@@ -110,7 +106,6 @@ const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
                   </span>
                 ))}
               </div>
-
               <div className="text-center">
                 <h3 className="text-2xl font-bold text-white mb-4">
                   Want More Insights?
@@ -122,10 +117,12 @@ const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
                   <AffiliateButton
                     text="Talk to Psychic Now"
                     className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300"
+                    // No href provided, so it will default to '#' and its default behavior will be prevented
                   />
                   <AffiliateButton
                     text="Explore Tarot Reading"
                     className="bg-transparent border-2 border-pink-400 text-pink-300 hover:bg-pink-400 hover:text-white px-8 py-3 rounded-full font-semibold transition-all duration-300"
+                    // No href provided, so it will default to '#' and its default behavior will be prevented
                   />
                 </div>
               </div>

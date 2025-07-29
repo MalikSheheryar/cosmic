@@ -107,7 +107,6 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, delay = 0 }) => {
           </div>
         </div>
       </div>
-
       {/* Content */}
       <div className="p-6">
         {/* Meta Information */}
@@ -121,17 +120,14 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, delay = 0 }) => {
             <span>{post.author}</span>
           </div>
         </div>
-
         {/* Title */}
         <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-200 transition-colors duration-300 line-clamp-2">
           {post.title}
         </h3>
-
         {/* Excerpt */}
         <p className="text-purple-200 text-sm leading-relaxed mb-4 line-clamp-3">
           {post.excerpt || 'No excerpt available'}
         </p>
-
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-4">
           {post.tags?.slice(0, 3).map((tag: string, index: number) => (
@@ -149,7 +145,6 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, delay = 0 }) => {
             </span>
           )}
         </div>
-
         {/* Read More Button */}
         <div className="flex items-center justify-between">
           <div className="text-purple-300 group-hover:text-white font-semibold text-sm transition-colors duration-300">
@@ -162,9 +157,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, delay = 0 }) => {
           </div>
         </div>
       </div>
-
       {/* Hover Effect Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl"></div>
     </motion.article>
   )
 }

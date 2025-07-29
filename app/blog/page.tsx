@@ -16,21 +16,19 @@ interface BlogPost {
 
 async function getBlogPosts() {
   const query = `*[_type == "blogPost"] | order(publishedAt desc) {
-    _id, 
-    title, 
-    excerpt, 
-    "content": rawContent, 
-    author, 
+    _id,
+    title,
+    excerpt,
+    "content": rawContent,
+    author,
     "date": publishedAt,
-    category, 
-    mainImage, 
+    category,
+    mainImage,
     tags,
     slug
   }`
-
   try {
     const posts = await client.fetch<BlogPost[]>(query)
-    console.log('Fetched posts:', posts) // Debug log
     return posts
   } catch (error) {
     console.error('Error fetching blog posts:', error)
@@ -40,10 +38,6 @@ async function getBlogPosts() {
 
 const BlogPage = async () => {
   const blogPosts = await getBlogPosts()
-
-  // Debug log to see what we're getting
-  console.log('Blog posts in component:', blogPosts)
-
   return <BlogClient blogPosts={blogPosts} />
 }
 
