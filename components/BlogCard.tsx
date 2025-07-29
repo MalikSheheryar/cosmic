@@ -16,6 +16,7 @@ interface BlogCardProps {
     category: string
     mainImage: { asset: { _ref: string } }
     tags: string[]
+    slug: { current: string }
   }
   delay?: number
 }
@@ -44,7 +45,6 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, delay = 0 }) => {
 
   const getReadingTime = (content: any[]) => {
     if (!content || !Array.isArray(content)) return 1
-
     const wordsPerMinute = 200
     const textContent = content
       .filter((block) => block._type === 'block' && block.children)
@@ -55,7 +55,6 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, delay = 0 }) => {
           .join(' ')
       )
       .join(' ')
-
     const wordCount = textContent.trim() ? textContent.split(/\s+/).length : 0
     return Math.max(1, Math.ceil(wordCount / wordsPerMinute))
   }
@@ -90,7 +89,6 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, delay = 0 }) => {
           className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
-
         {/* Category Badge */}
         <div className="absolute top-4 left-4">
           <span
@@ -99,7 +97,6 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, delay = 0 }) => {
             {post.category?.charAt(0).toUpperCase() + post.category?.slice(1)}
           </span>
         </div>
-
         {/* Reading Time */}
         <div className="absolute top-4 right-4">
           <div className="flex items-center gap-1 bg-black bg-opacity-50 px-2 py-1 rounded-full">

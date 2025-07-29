@@ -11,6 +11,7 @@ interface BlogPost {
   category: string
   mainImage: { asset: { _ref: string } }
   tags: string[]
+  slug: { current: string }
 }
 
 async function getBlogPosts() {
@@ -23,7 +24,8 @@ async function getBlogPosts() {
     "date": publishedAt,
     category, 
     mainImage, 
-    tags
+    tags,
+    slug
   }`
 
   try {
