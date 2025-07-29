@@ -146,6 +146,54 @@ const Home = () => {
         </motion.div>
       </section>
 
+      {/* Compatibility Quiz Teaser - Featured */}
+      <section className="py-16 px-4 bg-black bg-opacity-10">
+        <motion.div {...slideUp} className="max-w-4xl mx-auto text-center">
+          <div className="bg-gradient-to-r from-pink-800 to-purple-800 p-8 rounded-3xl border border-pink-500 shadow-2xl">
+            <div className="flex justify-center items-center gap-3 mb-6">
+              <Heart className="w-12 h-12 text-pink-400" />
+              <Sparkles className="w-10 h-10 text-yellow-400" />
+              <Heart className="w-12 h-12 text-pink-400" />
+            </div>
+            <h2 className="text-4xl font-bold text-white mb-4">
+              Are You Cosmically Compatible?
+            </h2>
+            <p className="text-pink-200 text-lg mb-6 max-w-2xl mx-auto">
+              Discover if you and your partner are destined to be together
+              through our comprehensive cosmic compatibility test. Uncover the
+              truth about your relationship through astrology and emotional
+              connection.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/quizzes"
+                className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-4 rounded-full text-lg font-bold transform hover:scale-105 transition-all duration-300 shadow-lg"
+              >
+                💕 Take Compatibility Test
+              </Link>
+              <AffiliateButton
+                text="Get Professional Love Reading"
+                className="bg-transparent border-2 border-yellow-400 text-yellow-300 hover:bg-yellow-400 hover:text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300"
+              />
+            </div>
+            <div className="mt-6 flex justify-center items-center gap-6 text-pink-200 text-sm">
+              <div className="flex items-center gap-2">
+                <Star className="w-4 h-4 text-yellow-400" />
+                <span>8.3K+ taken</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Heart className="w-4 h-4 text-pink-400" />
+                <span>10 min test</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-purple-400" />
+                <span>Instant results</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Daily Horoscope Preview */}
       <section className="py-16 px-4">
         <motion.div {...slideUp} className="max-w-6xl mx-auto">
