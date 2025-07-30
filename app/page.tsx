@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import HomeClient from './home-clietn'
+import HomeClient from './home-client' // Corrected typo from 'home-clietn'
 
 // Homepage specific metadata
 export const metadata: Metadata = {

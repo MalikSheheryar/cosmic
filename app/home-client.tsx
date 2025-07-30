@@ -6,10 +6,11 @@ import { Star, Heart, Sparkles, Moon } from 'lucide-react'
 import AffiliateButton from '@/components/AffiliateButton'
 import HoroscopeCard from '@/components/HoroscopeCard'
 import BlogCard from '@/components/BlogCard'
-import QuizCard from '@/components/QuizCard'
+import ServiceCard from '@/components/ServiceCard' // New import
 import { fadeIn, slideUp } from '@/utils/motion'
 import { client } from '@/lib/sanity'
 import { zodiacSigns } from '@/utils/zodiacData'
+import { psychicServices } from '@/utils/psychicServicesData' // New import
 
 // Define types for fetched data
 interface BlogPost {
@@ -24,38 +25,9 @@ interface BlogPost {
   tags: string[]
 }
 
-interface Quiz {
-  _id: string
-  title: string
-  description: string
-  type: string
-  difficulty: string
-  duration: number
-  participants: string
-  tags: string[]
-  questions: any[]
-  results: any[]
-}
-
-const getIcon = (type: string) => {
-  switch (type) {
-    case 'zodiac':
-      return <Star className="w-8 h-8" />
-    case 'love':
-      return <Heart className="w-8 h-8" />
-    case 'future':
-      return <Moon className="w-8 h-8" />
-    case 'personality':
-      return <Sparkles className="w-8 h-8" />
-    default:
-      return <Star className="w-8 h-8" />
-  }
-}
-
 const HomeClient = () => {
   const [data, setData] = useState({
     latestPosts: [] as BlogPost[],
-    quizzesPreview: [] as Quiz[],
     loading: true,
     error: null as string | null,
   })
@@ -68,24 +40,16 @@ const HomeClient = () => {
         const blogPostsQuery = `*[_type == "blogPost"] | order(publishedAt desc) [0...3] {
           _id, title, excerpt, "content": rawContent, author, date, category, mainImage, tags
         }`
-        const quizzesQuery = `*[_type == "quiz"] | order(orderRank asc) [0...3] {
-          _id, title, description, type, difficulty, duration, participants, tags
-        }`
-
-        const [latestPosts, quizzesPreview] = await Promise.all([
+        const [latestPosts] = await Promise.all([
           client.fetch<BlogPost[]>(blogPostsQuery),
-          client.fetch<Quiz[]>(quizzesQuery),
         ])
-
         if (isMounted) {
           console.log('Data fetched successfully:', {
             zodiacCount: zodiacSigns.length,
             blogCount: latestPosts?.length || 0,
-            quizCount: quizzesPreview?.length || 0,
           })
           setData({
             latestPosts: latestPosts || [],
-            quizzesPreview: quizzesPreview || [],
             loading: false,
             error: null,
           })
@@ -101,14 +65,13 @@ const HomeClient = () => {
         }
       }
     }
-
     fetchHomePageData()
     return () => {
       isMounted = false
     }
   }, [])
 
-  const { latestPosts, quizzesPreview, loading, error } = data
+  const { latestPosts, loading, error } = data
 
   return (
     <div className="min-h-screen">
@@ -166,6 +129,7 @@ const HomeClient = () => {
                 href="/quizzes/-cosmic-compatibility-test"
                 className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-4 rounded-full text-lg font-bold transform hover:scale-105 transition-all duration-300 shadow-lg"
               >
+                {' '}
                 💕 Take Compatibility Test
               </Link>
               <AffiliateButton
@@ -267,37 +231,43 @@ const HomeClient = () => {
         </motion.div>
       </section>
 
-      {/* Quizzes Preview */}
+      {/* Psychic Services Preview (formerly Quizzes Preview) */}
       <section className="py-16 px-4">
         <motion.div {...slideUp} className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <Moon className="w-12 h-12 text-blue-400 mx-auto mb-4" />
             <h2 className="text-4xl font-bold text-white mb-4">
-              Mystical Quizzes & Games
+              Explore Our Psychic Services
             </h2>
             <p className="text-purple-200 text-lg">
-              Test your cosmic knowledge and discover hidden truths
+              Connect with gifted psychics and spiritual advisors
             </p>
           </div>
-          {quizzesPreview.length > 0 ? (
+          {psychicServices.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {quizzesPreview.map((quiz, index) => (
-                <Link key={quiz._id} href="/quizzes">
-                  <QuizCard
-                    quiz={quiz}
-                    icon={getIcon(quiz.type)}
-                    delay={index * 0.1}
-                  />
-                </Link>
+              {psychicServices.slice(0, 3).map((service, index) => (
+                <ServiceCard
+                  key={service.id}
+                  service={service}
+                  delay={index * 0.1}
+                />
               ))}
             </div>
           ) : (
             <div className="text-center py-8">
               <p className="text-purple-200">
-                No quizzes available at the moment.
+                No psychic services available at the moment.
               </p>
             </div>
           )}
+          <div className="text-center mt-8">
+            <Link
+              href="/psychic-services"
+              className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-full hover:from-blue-600 hover:to-purple-700 transition-all duration-300"
+            >
+              View All Services
+            </Link>
+          </div>
         </motion.div>
       </section>
 
