@@ -8,11 +8,11 @@ import { client } from '@/lib/sanity' // Import Sanity client
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  title: 'Astro Love Guide',
-  description:
-    'Your trusted source for daily horoscopes, zodiac compatibility, and spiritual guidance.',
-}
+// export const metadata: Metadata = {
+//   title: 'Astro Love Guide',
+//   description:
+//     'Your trusted source for daily horoscopes, zodiac compatibility, and spiritual guidance.',
+// }
 
 interface ZodiacSign {
   _id: string

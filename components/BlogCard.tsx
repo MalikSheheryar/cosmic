@@ -5,6 +5,20 @@ import { Calendar, User, Tag, Clock } from 'lucide-react'
 import { fadeIn } from '@/utils/motion'
 import { urlForImage } from '@/lib/sanity.image'
 
+// Define the SanitySEO interface here or import it from a shared types file
+interface SanitySEO {
+  metaTitle?: string
+  metaDescription?: string
+  keywords?: string[]
+  ogTitle?: string
+  ogDescription?: string
+  ogImage?: { asset: { _ref: string } }
+  twitterCard?: 'summary' | 'summary_large_image' | 'app' | 'player'
+  twitterTitle?: string
+  twitterDescription?: string
+  twitterImage?: { asset: { _ref: string } }
+}
+
 interface BlogCardProps {
   post: {
     _id: string
@@ -17,6 +31,7 @@ interface BlogCardProps {
     mainImage: { asset: { _ref: string } }
     tags: string[]
     slug: { current: string }
+    seo?: SanitySEO // Add the SEO field here
   }
   delay?: number
 }
@@ -42,7 +57,6 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, delay = 0 }) => {
         return 'bg-gray-600 text-gray-100'
     }
   }
-
   const getReadingTime = (content: any[]) => {
     if (!content || !Array.isArray(content)) return 1
     const wordsPerMinute = 200
@@ -58,7 +72,6 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, delay = 0 }) => {
     const wordCount = textContent.trim() ? textContent.split(/\s+/).length : 0
     return Math.max(1, Math.ceil(wordCount / wordsPerMinute))
   }
-
   const formatDate = (dateString: string) => {
     try {
       return new Date(dateString).toLocaleDateString('en-US', {
@@ -70,7 +83,6 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, delay = 0 }) => {
       return dateString
     }
   }
-
   return (
     <motion.article
       {...fadeIn}
@@ -83,9 +95,9 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, delay = 0 }) => {
           src={
             post.mainImage
               ? urlForImage(post.mainImage).url()
-              : '/placeholder.svg'
+              : '/placeholder.svg?height=192&width=384&query=blog post card image' // Added placeholder query
           }
-          alt={post.title || 'Blog post image'}
+          alt={post.mainImage?.alt || post.title || 'Blog post image'} // Added alt text from Sanity
           className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>

@@ -4,9 +4,23 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Search } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import BlogCard from '@/components/BlogCard'
-import AffiliateButton from '@/components/AffiliateButton'
+import BlogCard from '@/components/BlogCard' // Corrected import path
+import AffiliateButton from '@/components/AffiliateButton' // Corrected import path
 import { fadeIn, slideUp } from '@/utils/motion'
+
+// Define the SanitySEO interface here or import it from a shared types file
+interface SanitySEO {
+  metaTitle?: string
+  metaDescription?: string
+  keywords?: string[]
+  ogTitle?: string
+  ogDescription?: string
+  ogImage?: { asset: { _ref: string } }
+  twitterCard?: 'summary' | 'summary_large_image' | 'app' | 'player'
+  twitterTitle?: string
+  twitterDescription?: string
+  twitterImage?: { asset: { _ref: string } }
+}
 
 interface BlogPost {
   _id: string
@@ -19,6 +33,7 @@ interface BlogPost {
   mainImage: { asset: { _ref: string } }
   tags: string[]
   slug: { current: string }
+  seo?: SanitySEO // Add the SEO field here
 }
 
 interface BlogClientProps {
@@ -29,7 +44,6 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
   const router = useRouter()
-
   const categories = [
     'all',
     'horoscope',
@@ -40,7 +54,6 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
     'spirituality',
     'astrology',
   ]
-
   const filteredPosts = blogPosts.filter((post) => {
     const matchesSearch =
       post.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -49,15 +62,13 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
       selectedCategory === 'all' || post.category === selectedCategory
     return matchesSearch && matchesCategory
   })
-
   const handlePostClick = (post: BlogPost) => {
     if (post.slug?.current) {
       router.push(`/blog/${post.slug.current}`)
     }
   }
-
   return (
-    <div className="min-h-screen py-20 px-4">
+    <div className="min-h-screen py-20 px-4 ">
       <motion.div {...fadeIn} className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -69,7 +80,6 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
           </p>
         </div>
         {/* Search and Filter */}
-        {/* Added relative z-10 and cursor-default to ensure this section is on top and not generally clickable */}
         <motion.div {...slideUp} className="mb-12 relative z-10 cursor-default">
           <div className="bg-gradient-to-r from-purple-800 to-indigo-800 p-6 rounded-2xl border border-purple-500">
             <div className="flex flex-col md:flex-row gap-4">
@@ -80,13 +90,13 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
                   placeholder="Search articles..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-black bg-opacity-50 border border-purple-400 rounded-lg text-white placeholder-purple-300 focus:border-pink-400 focus:outline-none transition-colors duration-300 cursor-text" // Added cursor-text
+                  className="w-full pl-10 pr-4 py-3 bg-black bg-opacity-50 border border-purple-400 rounded-lg text-white placeholder-purple-300 focus:border-pink-400 focus:outline-none transition-colors duration-300 cursor-text"
                 />
               </div>
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-4 py-3 bg-black bg-opacity-50 border border-purple-400 rounded-lg text-white focus:border-pink-400 focus:outline-none transition-colors duration-300 cursor-pointer" // Added cursor-pointer
+                className="px-4 py-3 bg-black bg-opacity-50 border border-purple-400 rounded-lg text-white focus:border-pink-400 focus:outline-none transition-colors duration-300 cursor-pointer"
               >
                 {categories.map((category) => (
                   <option key={category} value={category}>
@@ -100,7 +110,6 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
           </div>
         </motion.div>
         {/* Featured Article CTA */}
-        {/* Added relative z-10 and cursor-default to ensure this section is on top and not generally clickable */}
         <motion.div
           {...slideUp}
           className="text-center mb-16 relative z-10 cursor-default"
@@ -117,7 +126,6 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
               href="https://www.test.com"
               text="Connect with Expert Advisor"
               className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-3 rounded-full font-semibold transform hover:scale-105 transition-all duration-300"
-              // No href provided, so it will default to '#' and its default behavior will be prevented by the updated component
             />
           </div>
         </motion.div>
@@ -164,12 +172,10 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
               <AffiliateButton
                 text="Get Live Reading Now"
                 className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300"
-                // No href provided, so it will default to '#' and its default behavior will be prevented
               />
               <AffiliateButton
                 text="Browse All Services"
                 className="bg-transparent border-2 border-yellow-400 text-yellow-300 hover:bg-yellow-400 hover:text-white px-8 py-3 rounded-full font-semibold transition-all duration-300"
-                // No href provided, so it will default to '#' and its default behavior will be prevented
               />
             </div>
           </div>

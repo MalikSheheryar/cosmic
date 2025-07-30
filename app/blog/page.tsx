@@ -1,5 +1,20 @@
+import type { Metadata } from 'next'
 import { client } from '@/lib/sanity'
 import BlogClient from '@/components/blog-client'
+
+// Define the SanitySEO interface here or import it from a shared types file
+interface SanitySEO {
+  metaTitle?: string
+  metaDescription?: string
+  keywords?: string[]
+  ogTitle?: string
+  ogDescription?: string
+  ogImage?: { asset: { _ref: string } }
+  twitterCard?: 'summary' | 'summary_large_image' | 'app' | 'player'
+  twitterTitle?: string
+  twitterDescription?: string
+  twitterImage?: { asset: { _ref: string } }
+}
 
 interface BlogPost {
   _id: string
@@ -12,6 +27,59 @@ interface BlogPost {
   mainImage: { asset: { _ref: string } }
   tags: string[]
   slug: { current: string }
+  seo?: SanitySEO // Add the SEO field here
+}
+
+// Blog page metadata (static for the main blog listing)
+export const metadata: Metadata = {
+  title: 'Astro Love Guide Blog | Latest Astrology Insights & Cosmic Wisdom',
+  description:
+    'I hope this works Blog latest astrology insights, horoscope predictions, and cosmic wisdom. Read expert articles on love compatibility, zodiac signs, and spiritual guidance.',
+  keywords: [
+    'astrology blog',
+    'horoscope articles',
+    'zodiac insights',
+    'cosmic wisdom',
+    'astrology news',
+    'spiritual guidance',
+    'love astrology',
+    'horoscope predictions',
+    'astrology tips',
+    'zodiac compatibility',
+  ],
+  openGraph: {
+    title: 'Astro Love Guide Blog | Latest Astrology Insights & Cosmic Wisdom',
+    description:
+      'Discover the latest astrology insights, horoscope predictions, and cosmic wisdom. Read expert articles on love compatibility, zodiac signs, and spiritual guidance.',
+    url: 'https://yoursite.com/blog',
+    siteName: 'Astro Love Guide',
+    images: [
+      {
+        url: '/placeholder.svg?height=630&width=1200', // Using placeholder for consistency
+        width: 1200,
+        height: 630,
+        alt: 'Astro Love Guide Blog - Latest Astrology Insights',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Astro Love Guide Blog | Latest Astrology Insights & Cosmic Wisdom',
+    description:
+      'Discover the latest astrology insights, horoscope predictions, and cosmic wisdom. Read expert articles on love compatibility and zodiac signs.',
+    images: ['/placeholder.svg?height=675&width=1200'], // Using placeholder for consistency
+    creator: '@AstroLoveGuide',
+    site: '@AstroLoveGuide',
+  },
+  alternates: {
+    canonical: 'https://yoursite.com/blog',
+  },
+  other: {
+    'article:section': 'Astrology',
+    'article:tag': 'astrology, horoscope, zodiac, cosmic wisdom',
+  },
 }
 
 async function getBlogPosts() {
@@ -25,7 +93,19 @@ async function getBlogPosts() {
     category,
     mainImage,
     tags,
-    slug
+    slug,
+    seo { // Fetch the entire SEO object
+      metaTitle,
+      metaDescription,
+      keywords,
+      ogTitle,
+      ogDescription,
+      ogImage,
+      twitterCard,
+      twitterTitle,
+      twitterDescription,
+      twitterImage,
+    }
   }`
   try {
     const posts = await client.fetch<BlogPost[]>(query)

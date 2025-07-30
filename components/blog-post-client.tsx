@@ -8,6 +8,20 @@ import { fadeIn } from '@/utils/motion'
 import { urlForImage } from '@/lib/sanity.image'
 import PortableText from '@/components/PortableText'
 
+// Define the SanitySEO interface here or import it from a shared types file
+interface SanitySEO {
+  metaTitle?: string
+  metaDescription?: string
+  keywords?: string[]
+  ogTitle?: string
+  ogDescription?: string
+  ogImage?: { asset: { _ref: string } }
+  twitterCard?: 'summary' | 'summary_large_image' | 'app' | 'player'
+  twitterTitle?: string
+  twitterDescription?: string
+  twitterImage?: { asset: { _ref: string } }
+}
+
 interface BlogPost {
   _id: string
   title: string
@@ -19,6 +33,7 @@ interface BlogPost {
   mainImage: { asset: { _ref: string } }
   tags: string[]
   slug: { current: string }
+  seo?: SanitySEO // Add the SEO field here
 }
 
 interface BlogPostClientProps {
@@ -27,7 +42,6 @@ interface BlogPostClientProps {
 
 const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
   const router = useRouter()
-
   // Format date helper function
   const formatDate = (dateString: string) => {
     try {
@@ -40,9 +54,8 @@ const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
       return dateString
     }
   }
-
   return (
-    <div className="min-h-screen py-20 px-4">
+    <div className="min-h-screen py-20 px-4 ">
       <motion.div {...fadeIn} className="max-w-4xl mx-auto">
         <button
           onClick={() => router.push('/blog')}
@@ -56,9 +69,9 @@ const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
             src={
               post.mainImage
                 ? urlForImage(post.mainImage).url()
-                : '/placeholder.svg'
+                : '/placeholder.svg?height=384&width=1024&query=blog post main image' // Added placeholder query
             }
-            alt={post.title}
+            alt={post.mainImage?.alt || post.title || 'Blog post image'} // Added alt text from Sanity
             className="w-full h-64 md:h-96 object-cover"
           />
           <div className="p-8">
@@ -92,7 +105,6 @@ const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
               <AffiliateButton
                 text="Get Your Personal Reading"
                 className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300"
-                // No href provided, so it will default to '#' and its default behavior will be prevented
               />
             </div>
             <div className="border-t border-purple-500 pt-8 mt-8">
@@ -117,12 +129,10 @@ const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
                   <AffiliateButton
                     text="Talk to Psychic Now"
                     className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300"
-                    // No href provided, so it will default to '#' and its default behavior will be prevented
                   />
                   <AffiliateButton
                     text="Explore Tarot Reading"
                     className="bg-transparent border-2 border-pink-400 text-pink-300 hover:bg-pink-400 hover:text-white px-8 py-3 rounded-full font-semibold transition-all duration-300"
-                    // No href provided, so it will default to '#' and its default behavior will be prevented
                   />
                 </div>
               </div>
