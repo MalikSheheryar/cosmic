@@ -32,9 +32,9 @@ interface BlogPost {
 
 // Blog page metadata (static for the main blog listing)
 export const metadata: Metadata = {
-  title: 'Astro Love Guide Blog | Latest Astrology Insights & Cosmic Wisdom',
+  title: 'Astrology Blog – Horoscopes, Zodiac Tips & More | AstroLoveGuide',
   description:
-    'I hope this works Blog latest astrology insights, horoscope predictions, and cosmic wisdom. Read expert articles on love compatibility, zodiac signs, and spiritual guidance.',
+    'Explore our astrology blog for expert tips, zodiac advice, spiritual guidance, moon phases, and more. Stay aligned with the stars.',
   keywords: [
     'astrology blog',
     'horoscope articles',

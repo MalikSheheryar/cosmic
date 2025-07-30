@@ -31,21 +31,33 @@ const quizComponents: {
 
 const QuizRenderer: React.FC<QuizRendererProps> = ({ slug }) => {
   const router = useRouter()
-  const quiz = localQuizzes.find(
-    (q) =>
-      q.title
-        .toLowerCase()
-        .replace(/\s+/g, '-')
-        .replace(/[^a-z0-9-]/g, '') === slug
+
+  // Remove the dash prefix to match quiz data slugs
+  const cleanSlug = slug.startsWith('-') ? slug.slice(1) : slug
+
+  // Find quiz by the cleaned slug property
+  const quiz = localQuizzes.find((q) => q.slug === cleanSlug)
+
+  // Debug logging to see what's happening
+  console.log('Original slug:', slug)
+  console.log('Clean slug:', cleanSlug)
+  console.log(
+    'Available quizzes:',
+    localQuizzes.map((q) => ({ title: q.title, slug: q.slug }))
   )
+  console.log('Found quiz:', quiz)
 
   if (!quiz) {
     return (
       <div className="text-center py-12">
         <h2 className="text-3xl font-bold text-red-400 mb-4">Quiz Not Found</h2>
         <p className="text-lg text-gray-300 mb-6">
-          The quiz you are looking for does not exist.
+          The quiz you are looking for does not exist. Looking for slug:{' '}
+          {cleanSlug}
         </p>
+        <div className="text-sm text-gray-400 mb-4">
+          Available slugs: {localQuizzes.map((q) => q.slug).join(', ')}
+        </div>
         <Button
           onClick={() => router.push('/quizzes')}
           className="bg-purple-600 hover:bg-purple-700 text-white"
@@ -92,8 +104,7 @@ const QuizRenderer: React.FC<QuizRendererProps> = ({ slug }) => {
           <div className="text-center text-purple-300">Loading Quiz...</div>
         }
       >
-        <QuizComponent quizData={quiz} />{' '}
-        {/* Pass quiz data to the component */}
+        <QuizComponent quizData={quiz} />
       </Suspense>
     </div>
   )

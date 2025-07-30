@@ -3,9 +3,9 @@ import { localQuizzes } from '@/utils/localQuizData'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Mystical Quizzes & Games - Discover Your Destiny',
+  title: 'Fun & Insightful Astrology Quizzes | AstroLoveGuide',
   description:
-    'Test Test Test a variety of mystical quizzes and games, including tarot readings, cosmic compatibility tests, career astrology, and more. Discover hidden truths about yourself and your cosmic destiny.',
+    'Take personality and zodiac quizzes to explore your true self, love life, and cosmic destiny. Fun, accurate, and tailored to your sign.',
   keywords: [
     'quizzes',
     'games',

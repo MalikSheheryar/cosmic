@@ -4,9 +4,9 @@ import { psychicServices, testimonials } from '@/utils/psychicServicesData'
 
 // Psychic services page metadata
 export const metadata: Metadata = {
-  title: 'Professional Psychic Services | Expert Readings & Spiritual Guidance',
+  title: 'Trusted Psychic Readings & Advisors Online | AstroLoveGuide',
   description:
-    'Connect with experienced psychics and spiritual advisors for personalized readings. Get insights on love, career, life path, and spiritual guidance from certified professionals.',
+    'Connect with experienced psychics for tarot, love, career, and life readings. Find clarity and guidance through our trusted psychic partners.',
   keywords: [
     'psychic services',
     'psychic readings',

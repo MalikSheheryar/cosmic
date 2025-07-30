@@ -17,11 +17,8 @@ const QuizzesClient: React.FC<QuizzesClientProps> = ({ quizzes }) => {
   const router = useRouter()
 
   const handleStartQuiz = (quiz: LocalQuiz) => {
-    const slug = quiz.title
-      .toLowerCase()
-      .replace(/\s+/g, '-')
-      .replace(/[^a-z0-9-]/g, '')
-    router.push(`/quizzes/${slug}`)
+    // Use the fixed slug property with dash prefix instead of generating from title
+    router.push(`/quizzes/-${quiz.slug}`)
   }
 
   const getIcon = (type: string) => {

@@ -3,9 +3,9 @@ import HomeClient from './home-client' // Corrected typo from 'home-clietn'
 
 // Homepage specific metadata
 export const metadata: Metadata = {
-  title: 'Discover Your Cosmic Destiny | Daily Horoscopes & Astrology Readings',
+  title: 'Discover Astrology, Horoscopes & Compatibility | AstroLoveGuide',
   description:
-    'TEST the secrets of the stars with daily horoscopes, compatibility insights, mystical quizzes, and professional psychic guidance. Discover your cosmic destiny today!',
+    'Dive into the universe of astrology with AstroLoveGuide. Get daily horoscopes, relationship compatibility insights, quizzes, and more to guide your spiritual journey.',
   keywords: [
     'horoscope',
     'astrology',

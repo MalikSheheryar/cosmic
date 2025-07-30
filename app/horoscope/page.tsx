@@ -3,9 +3,9 @@ import DailyHoroscopeClient from './daily-horoscope-client'
 
 // Daily horoscope page metadata
 export const metadata: Metadata = {
-  title: "Daily Horoscope | Today's Astrology Predictions for All Zodiac Signs",
+  title: 'Free Daily Horoscopes for All Zodiac Signs | AstroLoveGuide',
   description:
-    'Get your daily horoscope and astrology predictions for all 12 zodiac signs. Discover what the stars have in store for love, career, health, and more today.',
+    'Read your free daily horoscope and see what the stars have in store for your love, career, and personal growth. Updated every morning on AstroLoveGuide.',
   keywords: [
     'daily horoscope',
     'today horoscope',

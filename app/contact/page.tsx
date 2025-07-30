@@ -3,9 +3,9 @@ import ContactClient from '@/components/contact-client'
 
 // Contact page metadata
 export const metadata: Metadata = {
-  title: 'Contact Us | Get in Touch with Astro Love Guide',
+  title: 'Contact AstroLoveGuide – Ask Questions or Collaborate',
   description:
-    "Have questions about astrology, horoscopes, or need spiritual guidance? Contact our team of expert astrologers and psychics. We're here to help you on your cosmic journey.",
+    'Have questions or want to collaborate with us? Reach out to AstroLoveGuide for support, partnerships, or general inquiries.',
   keywords: [
     'contact astrologer',
     'astrology questions',

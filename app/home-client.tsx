@@ -1,4 +1,5 @@
 'use client'
+
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
@@ -19,7 +20,7 @@ interface BlogPost {
   excerpt: string
   content: any[]
   author: string
-  date: string
+  date: string // This will now correctly hold the published date string
   category: string
   mainImage: { asset: { _ref: string } }
   tags: string[]
@@ -37,8 +38,9 @@ const HomeClient = () => {
     const fetchHomePageData = async () => {
       try {
         console.log('Starting to fetch home page data...')
+        // Corrected Sanity query: fetching 'publishedAt' as 'date'
         const blogPostsQuery = `*[_type == "blogPost"] | order(publishedAt desc) [0...3] {
-          _id, title, excerpt, "content": rawContent, author, date, category, mainImage, tags
+          _id, title, excerpt, "content": rawContent, author, "date": publishedAt, category, mainImage, tags
         }`
         const [latestPosts] = await Promise.all([
           client.fetch<BlogPost[]>(blogPostsQuery),
@@ -105,7 +107,6 @@ const HomeClient = () => {
           </div>
         </motion.div>
       </section>
-
       {/* Compatibility Quiz Teaser - Featured */}
       <section className="py-16 px-4 bg-black bg-opacity-10">
         <motion.div {...slideUp} className="max-w-4xl mx-auto text-center">
@@ -154,7 +155,6 @@ const HomeClient = () => {
           </div>
         </motion.div>
       </section>
-
       {/* Daily Horoscope Preview */}
       <section className="py-16 px-4">
         <motion.div {...slideUp} className="max-w-6xl mx-auto">
@@ -204,7 +204,6 @@ const HomeClient = () => {
           </div>
         </motion.div>
       </section>
-
       {/* Compatibility Teaser */}
       <section className="py-16 px-4 bg-black bg-opacity-20">
         <motion.div {...fadeIn} className="max-w-4xl mx-auto text-center">
@@ -230,7 +229,6 @@ const HomeClient = () => {
           </div>
         </motion.div>
       </section>
-
       {/* Psychic Services Preview (formerly Quizzes Preview) */}
       <section className="py-16 px-4">
         <motion.div {...slideUp} className="max-w-6xl mx-auto">
@@ -270,7 +268,6 @@ const HomeClient = () => {
           </div>
         </motion.div>
       </section>
-
       {/* Latest Blog Posts */}
       <section className="py-16 px-4 bg-black bg-opacity-20">
         <motion.div {...fadeIn} className="max-w-6xl mx-auto">
@@ -299,7 +296,6 @@ const HomeClient = () => {
           )}
         </motion.div>
       </section>
-
       {/* CTA Section */}
       <section className="py-20 px-4 text-center">
         <motion.div {...fadeIn} className="max-w-4xl mx-auto">

@@ -8,6 +8,7 @@ export interface LocalQuiz {
   participants: string
   tags: string[]
   component: string // This will tell us which quiz component to render
+  slug: string // Add fixed slug property
 }
 
 export const localQuizzes: LocalQuiz[] = [
@@ -22,6 +23,7 @@ export const localQuizzes: LocalQuiz[] = [
     participants: '12.5K',
     tags: ['tarot', 'future', 'destiny', 'cards'],
     component: 'TarotQuiz',
+    slug: 'tarot-card-reading', // Fixed slug
   },
   {
     _id: 'cosmic-compatibility',
@@ -34,6 +36,7 @@ export const localQuizzes: LocalQuiz[] = [
     participants: '8.3K',
     tags: ['love', 'compatibility', 'astrology', 'soulmate'],
     component: 'CompatibilityQuiz',
+    slug: 'cosmic-compatibility-test', // Fixed slug
   },
   {
     _id: 'career-astrology',
@@ -46,6 +49,7 @@ export const localQuizzes: LocalQuiz[] = [
     participants: '15.2K',
     tags: ['career', 'astrology', 'professional', 'birth-chart'],
     component: 'CareerAstrologyQuiz',
+    slug: 'career-astrology-quiz', // Fixed slug
   },
   {
     _id: 'children-prediction',
@@ -58,6 +62,7 @@ export const localQuizzes: LocalQuiz[] = [
     participants: '9.7K',
     tags: ['children', 'fertility', 'family', 'prediction'],
     component: 'ChildrenPredictionQuiz',
+    slug: 'children-prediction-quiz', // Fixed slug
   },
   {
     _id: 'birth-chart-reading',
@@ -70,5 +75,6 @@ export const localQuizzes: LocalQuiz[] = [
     participants: '18.9K',
     tags: ['birth-chart', 'natal', 'sun-moon-rising', 'personality'],
     component: 'BirthChartQuiz',
+    slug: 'birth-chart-reading', // Fixed slug
   },
 ]

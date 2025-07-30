@@ -3,10 +3,9 @@ import CompatibilityClient from './compatibility-client'
 
 // Compatibility page metadata
 export const metadata: Metadata = {
-  title:
-    'Zodiac Compatibility Calculator | Love Match & Relationship Astrology',
+  title: 'Zodiac Love & Friendship Compatibility Calculator | AstroLoveGuide',
   description:
-    'Test your zodiac compatibility with our free love match calculator. Check astrological compatibility between all zodiac signs and find your perfect cosmic connection.',
+    'Discover your love and friendship compatibility with other zodiac signs. Use our free astrology compatibility tool and learn how signs connect.',
   keywords: [
     'zodiac compatibility',
     'love compatibility',
