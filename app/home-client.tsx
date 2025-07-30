@@ -1,5 +1,4 @@
 'use client'
-
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
@@ -24,6 +23,7 @@ interface BlogPost {
   category: string
   mainImage: { asset: { _ref: string } }
   tags: string[]
+  slug: { current: string } // Ensure slug is part of the interface
 }
 
 const HomeClient = () => {
@@ -40,7 +40,7 @@ const HomeClient = () => {
         console.log('Starting to fetch home page data...')
         // Corrected Sanity query: fetching 'publishedAt' as 'date'
         const blogPostsQuery = `*[_type == "blogPost"] | order(publishedAt desc) [0...3] {
-          _id, title, excerpt, "content": rawContent, author, "date": publishedAt, category, mainImage, tags
+          _id, title, excerpt, "content": rawContent, author, "date": publishedAt, category, mainImage, tags, slug
         }`
         const [latestPosts] = await Promise.all([
           client.fetch<BlogPost[]>(blogPostsQuery),
@@ -107,6 +107,7 @@ const HomeClient = () => {
           </div>
         </motion.div>
       </section>
+
       {/* Compatibility Quiz Teaser - Featured */}
       <section className="py-16 px-4 bg-black bg-opacity-10">
         <motion.div {...slideUp} className="max-w-4xl mx-auto text-center">
@@ -155,6 +156,7 @@ const HomeClient = () => {
           </div>
         </motion.div>
       </section>
+
       {/* Daily Horoscope Preview */}
       <section className="py-16 px-4">
         <motion.div {...slideUp} className="max-w-6xl mx-auto">
@@ -204,6 +206,7 @@ const HomeClient = () => {
           </div>
         </motion.div>
       </section>
+
       {/* Compatibility Teaser */}
       <section className="py-16 px-4 bg-black bg-opacity-20">
         <motion.div {...fadeIn} className="max-w-4xl mx-auto text-center">
@@ -229,6 +232,7 @@ const HomeClient = () => {
           </div>
         </motion.div>
       </section>
+
       {/* Psychic Services Preview (formerly Quizzes Preview) */}
       <section className="py-16 px-4">
         <motion.div {...slideUp} className="max-w-6xl mx-auto">
@@ -268,6 +272,7 @@ const HomeClient = () => {
           </div>
         </motion.div>
       </section>
+
       {/* Latest Blog Posts */}
       <section className="py-16 px-4 bg-black bg-opacity-20">
         <motion.div {...fadeIn} className="max-w-6xl mx-auto">
@@ -282,7 +287,9 @@ const HomeClient = () => {
           {latestPosts.length > 0 ? (
             <div className="grid md:grid-cols-3 gap-8">
               {latestPosts.map((post, index) => (
-                <Link key={post._id} href="/blog">
+                <Link key={post._id} href={`/blog/${post.slug.current}`}>
+                  {' '}
+                  {/* Changed href here */}
                   <BlogCard post={post} delay={index * 0.1} />
                 </Link>
               ))}
@@ -296,6 +303,7 @@ const HomeClient = () => {
           )}
         </motion.div>
       </section>
+
       {/* CTA Section */}
       <section className="py-20 px-4 text-center">
         <motion.div {...fadeIn} className="max-w-4xl mx-auto">
@@ -315,5 +323,4 @@ const HomeClient = () => {
     </div>
   )
 }
-
 export default HomeClient
