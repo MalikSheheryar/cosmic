@@ -192,6 +192,7 @@ const TarotQuiz: React.FC<TarotQuizProps> = ({ onReset }) => {
               personalized session.
             </p>
             <AffiliateButton
+              href="https://www.atom.com/name/Test"
               text="✨ Get Your Full Tarot Session"
               className="inline-flex items-center bg-white text-purple-600 px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all"
             />

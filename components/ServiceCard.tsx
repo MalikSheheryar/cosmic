@@ -75,7 +75,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, delay }) => {
         {service.specialists} specialists available
       </p>
       <Link
-        href="/psychic-services" // Link to the main psychic services page
+        href="https://www.atom.com/name/Test"
         className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-4 py-2 rounded-full text-sm font-bold text-center transition-all duration-300 flex items-center justify-center gap-2"
       >
         Explore Service

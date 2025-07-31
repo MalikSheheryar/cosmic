@@ -68,6 +68,7 @@ const QuizzesClient: React.FC<QuizzesClientProps> = ({ quizzes }) => {
               psychics and astrologers
             </p>
             <AffiliateButton
+              href="https://www.atom.com/name/Test"
               text="Connect with Expert Now"
               className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-6 sm:px-8 py-3 rounded-full font-semibold transform hover:scale-105 transition-all duration-300 text-sm sm:text-base"
             />

@@ -312,6 +312,7 @@ const ContactClient = () => {
                 psychic advisor right now for instant insights and guidance.
               </p>
               <AffiliateButton
+                href="https://www.atom.com/name/Test"
                 text="Talk to Advisor Now"
                 className="w-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white py-3 px-6 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
               />
@@ -388,6 +389,7 @@ const ContactClient = () => {
 
             <div className="text-center">
               <AffiliateButton
+                href="https://www.atom.com/name/Test"
                 text="Explore Our Services"
                 className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
               />

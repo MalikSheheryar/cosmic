@@ -95,6 +95,7 @@ const HomeClient = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <AffiliateButton
+              href="https://www.atom.com/name/Test"
               text="Get Your Reading Now"
               className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-8 py-4 rounded-full text-lg font-semibold transform hover:scale-105 transition-all duration-300"
             />
@@ -135,6 +136,7 @@ const HomeClient = () => {
                 💕 Take Compatibility Test
               </Link>
               <AffiliateButton
+                href="https://www.atom.com/name/Test"
                 text="Get Professional Love Reading"
                 className="bg-transparent border-2 border-yellow-400 text-yellow-300 hover:bg-yellow-400 hover:text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300"
               />
@@ -226,6 +228,7 @@ const HomeClient = () => {
               Check Compatibility
             </Link>
             <AffiliateButton
+              href="https://www.atom.com/name/Test"
               text="Get Professional Love Reading"
               className="bg-transparent border-2 border-pink-400 text-pink-300 hover:bg-pink-400 hover:text-white px-8 py-3 rounded-full transition-all duration-300"
             />
@@ -315,6 +318,7 @@ const HomeClient = () => {
             guidance
           </p>
           <AffiliateButton
+            href="https://www.atom.com/name/Test"
             text="Start Your Journey Now"
             className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-12 py-4 rounded-full text-xl font-bold transform hover:scale-105 transition-all duration-300 shadow-lg"
           />

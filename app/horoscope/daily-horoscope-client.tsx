@@ -45,6 +45,7 @@ const DailyHoroscopeClient = () => {
               Get personalized insights from professional astrologers
             </p>
             <AffiliateButton
+              href="https://www.atom.com/name/Test"
               text="Get Your Full Reading Now"
               className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-3 rounded-full font-semibold transform hover:scale-105 transition-all duration-300"
             />
@@ -159,6 +160,7 @@ const DailyHoroscopeClient = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <AffiliateButton
+                href="https://www.atom.com/name/Test"
                 text="Talk to a Psychic Now"
                 className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300"
               />

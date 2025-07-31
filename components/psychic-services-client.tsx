@@ -169,7 +169,7 @@ const PsychicServicesClient: React.FC<PsychicServicesClientProps> = ({
                 {/* Service Action Buttons */}
                 <div className="flex flex-col gap-2">
                   <Link
-                    href="#" // Replace with actual service link
+                    href="https://www.atom.com/name/Test"
                     className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-4 py-2 rounded-full text-sm font-bold text-center transition-all duration-300 flex items-center justify-center gap-2"
                   >
                     Start Reading
@@ -196,7 +196,7 @@ const PsychicServicesClient: React.FC<PsychicServicesClientProps> = ({
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
-                  href="#" // Replace with main service link
+                  href="https://www.atom.com/name/Test"
                   className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-4 rounded-full text-lg font-bold transform hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-2"
                 >
                   Start {selectedServiceData.title} Now

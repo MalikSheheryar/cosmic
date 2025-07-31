@@ -297,6 +297,7 @@ const ZodiacSignClientPage: React.FC<ZodiacSignClientPageProps> = ({
                 personalized reading.
               </p>
               <AffiliateButton
+                href="https://www.atom.com/name/Test"
                 text="Get Your Reading"
                 className="w-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white py-3 rounded-full font-semibold transition-all duration-300 mb-4"
               />
@@ -311,6 +312,7 @@ const ZodiacSignClientPage: React.FC<ZodiacSignClientPageProps> = ({
                 from expert love psychics.
               </p>
               <AffiliateButton
+                href="https://www.atom.com/name/Test"
                 text="Talk to Love Expert"
                 className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white py-3 rounded-full font-semibold transition-all duration-300"
               />
@@ -325,6 +327,7 @@ const ZodiacSignClientPage: React.FC<ZodiacSignClientPageProps> = ({
                 your zodiac sign.
               </p>
               <AffiliateButton
+                href="https://www.atom.com/name/Test"
                 text="Career Reading"
                 className="w-full bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white py-3 rounded-full font-semibold transition-all duration-300"
               />
