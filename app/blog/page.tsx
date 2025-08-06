@@ -28,6 +28,7 @@ interface BlogPost {
   tags: string[]
   slug: { current: string }
   seo?: SanitySEO // Add the SEO field here
+  affiliateLink?: string // New: Add affiliateLink to the interface
 }
 
 // Blog page metadata (static for the main blog listing)
@@ -105,7 +106,8 @@ async function getBlogPosts() {
       twitterTitle,
       twitterDescription,
       twitterImage,
-    }
+    },
+    affiliateLink, // New: Fetch the affiliateLink
   }`
   try {
     const posts = await client.fetch<BlogPost[]>(query)

@@ -29,6 +29,7 @@ interface BlogPost {
   tags: string[]
   slug: { current: string }
   seo?: SanitySEO // Add the SEO field here
+  affiliateLink?: string // New: Add affiliateLink to the interface
 }
 
 async function getBlogPost(slug: string): Promise<BlogPost | null> {
@@ -54,7 +55,8 @@ async function getBlogPost(slug: string): Promise<BlogPost | null> {
       twitterTitle,
       twitterDescription,
       twitterImage,
-    }
+    },
+    affiliateLink, // New: Fetch the affiliateLink
   }`
   try {
     const post = await client.fetch<BlogPost>(query, { slug })
@@ -97,7 +99,6 @@ export async function generateMetadata(
   const seoTitle = post.seo?.metaTitle || defaultTitle
   const seoDescription = post.seo?.metaDescription || defaultDescription
   const seoKeywords = post.seo?.keywords?.join(', ') || defaultKeywords
-
   const ogTitle = post.seo?.ogTitle || seoTitle
   const ogDescription = post.seo?.ogDescription || seoDescription
   const ogImage = post.seo?.ogImage
@@ -105,7 +106,6 @@ export async function generateMetadata(
     : post.mainImage
       ? urlForImage(post.mainImage).url()
       : '/placeholder.svg?height=630&width=1200'
-
   const twitterTitle = post.seo?.twitterTitle || ogTitle
   const twitterDescription = post.seo?.twitterDescription || ogDescription
   const twitterImage = post.seo?.twitterImage

@@ -1,4 +1,5 @@
 'use client'
+
 import type React from 'react'
 import { motion } from 'framer-motion'
 import { Calendar, User, Tag, ArrowLeft } from 'lucide-react'
@@ -34,6 +35,7 @@ interface BlogPost {
   tags: string[]
   slug: { current: string }
   seo?: SanitySEO // Add the SEO field here
+  affiliateLink?: string // New: Add affiliateLink to the interface
 }
 
 interface BlogPostClientProps {
@@ -42,6 +44,7 @@ interface BlogPostClientProps {
 
 const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
   const router = useRouter()
+
   // Format date helper function
   const formatDate = (dateString: string) => {
     try {
@@ -54,6 +57,7 @@ const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
       return dateString
     }
   }
+
   return (
     <div className="min-h-screen py-20 px-4 ">
       <motion.div {...fadeIn} className="max-w-4xl mx-auto">
@@ -94,19 +98,22 @@ const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
               <PortableText value={post.content} />
             </div>
             {/* Affiliate CTAs within content */}
-            <div className="my-12 p-6 bg-gradient-to-r from-purple-800 to-pink-800 rounded-xl border border-purple-500">
-              <h3 className="text-xl font-bold text-white mb-4">
-                Ready for Personal Guidance?
-              </h3>
-              <p className="text-purple-200 mb-6">
-                Get insights tailored specifically to your situation with a
-                professional reading
-              </p>
-              <AffiliateButton
-                text="Get Your Personal Reading"
-                className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300"
-              />
-            </div>
+            {post.affiliateLink && ( // Conditionally render if affiliateLink exists
+              <div className="my-12 p-6 bg-gradient-to-r from-purple-800 to-pink-800 rounded-xl border border-purple-500">
+                <h3 className="text-xl font-bold text-white mb-4">
+                  Ready for Personal Guidance?
+                </h3>
+                <p className="text-purple-200 mb-6">
+                  Get insights tailored specifically to your situation with a
+                  professional reading
+                </p>
+                <AffiliateButton
+                  href={post.affiliateLink} // Use the affiliate link from Sanity
+                  text="Get Your Personal Reading"
+                  className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300"
+                />
+              </div>
+            )}
             <div className="border-t border-purple-500 pt-8 mt-8">
               <div className="flex flex-wrap gap-2 mb-6">
                 {post.tags?.map((tag) => (
@@ -129,10 +136,12 @@ const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
                   <AffiliateButton
                     text="Talk to Psychic Now"
                     className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300"
+                    href="https://286ecnl6n3n5iu1cwspijkjgrr.hop.clickbank.net" // Existing hardcoded link
                   />
                   <AffiliateButton
                     text="Explore Tarot Reading"
                     className="bg-transparent border-2 border-pink-400 text-pink-300 hover:bg-pink-400 hover:text-white px-8 py-3 rounded-full font-semibold transition-all duration-300"
+                    href="https://2d36dqcer10v4mb0sgog2-5bm0.hop.clickbank.net" // Existing hardcoded link
                   />
                 </div>
               </div>

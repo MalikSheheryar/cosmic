@@ -1,11 +1,12 @@
 'use client'
+
 import type React from 'react'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Search } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import BlogCard from '@/components/BlogCard' // Corrected import path
-import AffiliateButton from '@/components/AffiliateButton' // Corrected import path
+import BlogCard from '@/components/BlogCard'
+import AffiliateButton from '@/components/AffiliateButton'
 import { fadeIn, slideUp } from '@/utils/motion'
 
 // Define the SanitySEO interface here or import it from a shared types file
@@ -34,6 +35,7 @@ interface BlogPost {
   tags: string[]
   slug: { current: string }
   seo?: SanitySEO // Add the SEO field here
+  affiliateLink?: string // New: Add affiliateLink to the interface
 }
 
 interface BlogClientProps {
@@ -44,6 +46,7 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
   const router = useRouter()
+
   const categories = [
     'all',
     'horoscope',
@@ -54,6 +57,7 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
     'spirituality',
     'astrology',
   ]
+
   const filteredPosts = blogPosts.filter((post) => {
     const matchesSearch =
       post.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -62,11 +66,13 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
       selectedCategory === 'all' || post.category === selectedCategory
     return matchesSearch && matchesCategory
   })
+
   const handlePostClick = (post: BlogPost) => {
     if (post.slug?.current) {
       router.push(`/blog/${post.slug.current}`)
     }
   }
+
   return (
     <div className="min-h-screen py-20 px-4 ">
       <motion.div {...fadeIn} className="max-w-6xl mx-auto">
@@ -79,6 +85,7 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
             Discover the latest wisdom from the stars and beyond
           </p>
         </div>
+
         {/* Search and Filter */}
         <motion.div {...slideUp} className="mb-12 relative z-10 cursor-default">
           <div className="bg-gradient-to-r from-purple-800 to-indigo-800 p-6 rounded-2xl border border-purple-500">
@@ -109,6 +116,7 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
             </div>
           </div>
         </motion.div>
+
         {/* Featured Article CTA */}
         <motion.div
           {...slideUp}
@@ -129,6 +137,7 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
             />
           </div>
         </motion.div>
+
         {/* Blog Posts Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {filteredPosts.map((post, index) => (
@@ -143,6 +152,7 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
             </motion.div>
           ))}
         </div>
+
         {filteredPosts.length === 0 && blogPosts.length > 0 && (
           <motion.div {...fadeIn} className="text-center py-12">
             <p className="text-purple-300 text-xl">
@@ -150,6 +160,7 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
             </p>
           </motion.div>
         )}
+
         {blogPosts.length === 0 && (
           <motion.div {...fadeIn} className="text-center py-12">
             <p className="text-purple-300 text-xl">
@@ -157,6 +168,7 @@ const BlogClient: React.FC<BlogClientProps> = ({ blogPosts }) => {
             </p>
           </motion.div>
         )}
+
         {/* Newsletter CTA */}
         <motion.div {...fadeIn} className="text-center">
           <div className="bg-gradient-to-r from-indigo-800 to-purple-800 p-8 rounded-2xl border border-indigo-500">
