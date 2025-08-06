@@ -169,7 +169,7 @@ const PsychicServicesClient: React.FC<PsychicServicesClientProps> = ({
                 {/* Service Action Buttons */}
                 <div className="flex flex-col gap-2">
                   <Link
-                    href="https://www.atom.com/name/Test"
+                    href="https://286ecnl6n3n5iu1cwspijkjgrr.hop.clickbank.net"
                     className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-4 py-2 rounded-full text-sm font-bold text-center transition-all duration-300 flex items-center justify-center gap-2"
                   >
                     Start Reading
@@ -196,7 +196,7 @@ const PsychicServicesClient: React.FC<PsychicServicesClientProps> = ({
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
-                  href="https://www.atom.com/name/Test"
+                  href="https://286ecnl6n3n5iu1cwspijkjgrr.hop.clickbank.net"
                   className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-4 rounded-full text-lg font-bold transform hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-2"
                 >
                   Start {selectedServiceData.title} Now
@@ -316,7 +316,7 @@ const PsychicServicesClient: React.FC<PsychicServicesClientProps> = ({
                 <Sparkles className="w-6 h-6" />
               </Link>
               <Link
-                href="#" // Replace with all offers link
+                href="https://286ecnl6n3n5iu1cwspijkjgrr.hop.clickbank.net" // Replace with all offers link
                 className="bg-transparent border-2 border-green-400 text-green-300 hover:bg-green-400 hover:text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 inline-flex items-center justify-center gap-2"
               >
                 View All Offers

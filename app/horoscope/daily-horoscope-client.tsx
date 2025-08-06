@@ -45,7 +45,7 @@ const DailyHoroscopeClient = () => {
               Get personalized insights from professional astrologers
             </p>
             <AffiliateButton
-              href="https://www.atom.com/name/Test"
+              href="https://9a61aimfs9p57s4dsgpm1w0k4i.hop.clickbank.net"
               text="Get Your Full Reading Now"
               className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-3 rounded-full font-semibold transform hover:scale-105 transition-all duration-300"
             />
@@ -160,11 +160,12 @@ const DailyHoroscopeClient = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <AffiliateButton
-                href="https://www.atom.com/name/Test"
+                href="https://286ecnl6n3n5iu1cwspijkjgrr.hop.clickbank.net"
                 text="Talk to a Psychic Now"
                 className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300"
               />
               <AffiliateButton
+                href="https://2d36dqcer10v4mb0sgog2-5bm0.hop.clickbank.net"
                 text="Explore Tarot Readings"
                 className="bg-transparent border-2 border-yellow-400 text-yellow-300 hover:bg-yellow-400 hover:text-white px-8 py-3 rounded-full font-semibold transition-all duration-300"
               />
