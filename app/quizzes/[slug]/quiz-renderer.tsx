@@ -26,7 +26,20 @@ const quizComponents: {
     () => import('@/components/quizzes/ChildrenPredictionQuiz')
   ),
   BirthChartQuiz: lazy(() => import('@/components/quizzes/BirthChartQuiz')),
-  // Add other quiz components here as you create them
+  // NEW QUIZ COMPONENTS
+  CosmicPortalQuiz: lazy(() => import('@/components/quizzes/CosmicPortalQuiz')),
+  CelestialArchetypeQuiz: lazy(
+    () => import('@/components/quizzes/CelestialArchetypeQuiz')
+  ),
+  PlanetaryOriginQuiz: lazy(
+    () => import('@/components/quizzes/PlanetaryOriginQuiz')
+  ),
+  LoveDestinyTarotQuiz: lazy(
+    () => import('@/components/quizzes/LoveDestinyTarotQuiz')
+  ),
+  NumerologyFutureQuiz: lazy(
+    () => import('@/components/quizzes/NumerologyFutureQuiz')
+  ),
 }
 
 const QuizRenderer: React.FC<QuizRendererProps> = ({ slug }) => {
@@ -98,7 +111,6 @@ const QuizRenderer: React.FC<QuizRendererProps> = ({ slug }) => {
       >
         <ArrowLeft className="mr-2 h-4 w-4" /> Back to Quizzes
       </Button>
-
       <Suspense
         fallback={
           <div className="text-center text-purple-300">Loading Quiz...</div>

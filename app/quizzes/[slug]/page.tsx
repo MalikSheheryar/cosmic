@@ -150,7 +150,7 @@ const hardcodedQuizMetadata: { [key: string]: Metadata } = {
     title:
       'Free Birth Chart Reading Quiz – Sun, Moon & Rising | AstroLoveGuide',
     description:
-      'Get your complete birth chart with Sun, Moon, and Rising signs. Reveal your cosmic identity and personal power through this astrology quiz.',
+      'Get your complete birth chart with Sun, Moon, and Rising signs. Reveal your cosmic identity and personal power through this astrology quiz.',
     keywords: [
       'birth chart',
       'natal chart',
@@ -184,6 +184,183 @@ const hardcodedQuizMetadata: { [key: string]: Metadata } = {
       images: ['/placeholder.svg?height=675&width=1200'],
     },
   },
+  // NEW QUIZ METADATA
+  'cosmic-portal-2025': {
+    title:
+      'Cosmic Portal 2025 Quiz – Which Gateway Opens for You? | AstroLoveGuide',
+    description:
+      'Discover which mystical portal will open for you in 2025. Uncover your transformation gateway and spiritual destiny through cosmic energy analysis.',
+    keywords: [
+      'cosmic portal',
+      '2025 predictions',
+      'spiritual transformation',
+      'mystical gateway',
+      'energy portal',
+      'spiritual destiny',
+    ],
+    openGraph: {
+      title: 'Cosmic Portal 2025 - Mystical Quizzes',
+      description: 'Discover which mystical portal opens for you in 2025.',
+      url: 'https://yourwebsite.com/quizzes/cosmic-portal-2025',
+      siteName: 'Mystical Quizzes',
+      images: [
+        {
+          url: '/placeholder.svg?height=630&width=1200',
+          width: 1200,
+          height: 630,
+          alt: 'Cosmic Portal 2025',
+        },
+      ],
+      locale: 'en_US',
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Cosmic Portal 2025 - Mystical Quizzes',
+      description: 'Discover which mystical portal opens for you in 2025.',
+      images: ['/placeholder.svg?height=675&width=1200'],
+    },
+  },
+  'celestial-archetype': {
+    title: 'Celestial Archetype Quiz – Your Mythical Role | AstroLoveGuide',
+    description:
+      'What mythical role were you born to play? Discover your celestial archetype through astrology, numerology, and divine intuition.',
+    keywords: [
+      'celestial archetype',
+      'mythical role',
+      'divine purpose',
+      'spiritual archetype',
+      'cosmic identity',
+      'mystical personality',
+    ],
+    openGraph: {
+      title: 'Celestial Archetype - Mystical Quizzes',
+      description: 'Discover your mythical role and celestial archetype.',
+      url: 'https://yourwebsite.com/quizzes/celestial-archetype',
+      siteName: 'Mystical Quizzes',
+      images: [
+        {
+          url: '/placeholder.svg?height=630&width=1200',
+          width: 1200,
+          height: 630,
+          alt: 'Celestial Archetype',
+        },
+      ],
+      locale: 'en_US',
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Celestial Archetype - Mystical Quizzes',
+      description: 'Discover your mythical role and celestial archetype.',
+      images: ['/placeholder.svg?height=675&width=1200'],
+    },
+  },
+  'planetary-origin': {
+    title: 'Planetary Origin Quiz – What Planet Are You From? | AstroLoveGuide',
+    description:
+      'According to your star alignment, you might not be from Earth. Discover your true planetary origin and cosmic DNA through mystical analysis.',
+    keywords: [
+      'planetary origin',
+      'starseed quiz',
+      'cosmic DNA',
+      'alien origin',
+      'planetary alignment',
+      'cosmic heritage',
+    ],
+    openGraph: {
+      title: 'Planetary Origin Quiz - Mystical Quizzes',
+      description: 'Discover your true planetary origin and cosmic DNA.',
+      url: 'https://yourwebsite.com/quizzes/planetary-origin',
+      siteName: 'Mystical Quizzes',
+      images: [
+        {
+          url: '/placeholder.svg?height=630&width=1200',
+          width: 1200,
+          height: 630,
+          alt: 'Planetary Origin Quiz',
+        },
+      ],
+      locale: 'en_US',
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Planetary Origin Quiz - Mystical Quizzes',
+      description: 'Discover your true planetary origin and cosmic DNA.',
+      images: ['/placeholder.svg?height=675&width=1200'],
+    },
+  },
+  'love-destiny-tarot-2025': {
+    title: 'Love Destiny Tarot 2025 – Your Romantic Future | AstroLoveGuide',
+    description:
+      'What does the tarot reveal about your love destiny in 2025? Discover your romantic archetype and divine love predictions through ancient cards.',
+    keywords: [
+      'love tarot',
+      'romance 2025',
+      'love destiny',
+      'tarot love reading',
+      'romantic predictions',
+      'soulmate tarot',
+    ],
+    openGraph: {
+      title: 'Love Destiny Tarot 2025 - Mystical Quizzes',
+      description: 'Discover your love destiny for 2025 through tarot.',
+      url: 'https://yourwebsite.com/quizzes/love-destiny-tarot-2025',
+      siteName: 'Mystical Quizzes',
+      images: [
+        {
+          url: '/placeholder.svg?height=630&width=1200',
+          width: 1200,
+          height: 630,
+          alt: 'Love Destiny Tarot 2025',
+        },
+      ],
+      locale: 'en_US',
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Love Destiny Tarot 2025 - Mystical Quizzes',
+      description: 'Discover your love destiny for 2025 through tarot.',
+      images: ['/placeholder.svg?height=675&width=1200'],
+    },
+  },
+  'numerology-future-2026': {
+    title: 'Numerology Future 2026 – Your Destiny by Numbers | AstroLoveGuide',
+    description:
+      'Your future by the numbers! Discover what 2026 holds for you through advanced numerology calculations and mystical number analysis.',
+    keywords: [
+      'numerology 2026',
+      'future predictions',
+      'personal year number',
+      'numerology destiny',
+      'number predictions',
+      'mystical numbers',
+    ],
+    openGraph: {
+      title: 'Numerology Future 2026 - Mystical Quizzes',
+      description: 'Discover your 2026 destiny through numerology.',
+      url: 'https://yourwebsite.com/quizzes/numerology-future-2026',
+      siteName: 'Mystical Quizzes',
+      images: [
+        {
+          url: '/placeholder.svg?height=630&width=1200',
+          width: 1200,
+          height: 630,
+          alt: 'Numerology Future 2026',
+        },
+      ],
+      locale: 'en_US',
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Numerology Future 2026 - Mystical Quizzes',
+      description: 'Discover your 2026 destiny through numerology.',
+      images: ['/placeholder.svg?height=675&width=1200'],
+    },
+  },
 }
 
 // Generate static paths using FIXED slugs from localQuizzes with dash prefix
@@ -206,14 +383,12 @@ export async function generateMetadata({
 
   // ALWAYS prioritize hardcoded metadata first
   const hardcodedMetadata = hardcodedQuizMetadata[cleanSlug]
-
   if (hardcodedMetadata) {
     return hardcodedMetadata
   }
 
   // Fallback: Find quiz by slug (not by generated slug from title)
   const quiz = localQuizzes.find((q) => q.slug === cleanSlug)
-
   if (!quiz) {
     return {
       title: 'Quiz Not Found',

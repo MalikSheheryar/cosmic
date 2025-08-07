@@ -1,5 +1,17 @@
+'use client'
+
 import Link from 'next/link'
-import { Star, Heart, Moon, Mail, Phone, MapPin } from 'lucide-react'
+import { useState } from 'react'
+import {
+  Star,
+  Heart,
+  Moon,
+  Mail,
+  Phone,
+  MapPin,
+  Sparkles,
+  ArrowRight,
+} from 'lucide-react'
 
 // Static zodiac signs data
 const zodiacSigns = [
@@ -18,10 +30,98 @@ const zodiacSigns = [
 ]
 
 const Footer = () => {
+  const [email, setEmail] = useState('')
+  const [isSubscribing, setIsSubscribing] = useState(false)
   const currentYear = new Date().getFullYear()
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubscribing(true)
+
+    // For now, redirect to affiliate URL
+    // In the future, this will integrate with Mailchimp
+    setTimeout(() => {
+      window.open(
+        'https://286ecnl6n3n5iu1cwspijkjgrr.hop.clickbank.net',
+        '_blank'
+      )
+      setIsSubscribing(false)
+      setEmail('')
+    }, 1000)
+  }
 
   return (
     <footer className="bg-black bg-opacity-50 border-t border-purple-500 mt-20">
+      {/* Newsletter Subscription Section */}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-pink-900/20 to-purple-900/20"></div>
+        <div className="absolute inset-0">
+          <div className="absolute top-4 left-1/4 w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+          <div className="absolute top-8 right-1/3 w-1 h-1 bg-pink-400 rounded-full animate-pulse delay-300"></div>
+          <div className="absolute bottom-6 left-1/3 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse delay-700"></div>
+          <div className="absolute bottom-4 right-1/4 w-1 h-1 bg-purple-400 rounded-full animate-pulse delay-500"></div>
+        </div>
+
+        <div className="relative max-w-4xl mx-auto px-4 py-12 text-center">
+          <div className="flex justify-center mb-4">
+            <div className="relative">
+              <Sparkles className="w-8 h-8 text-yellow-400 animate-pulse" />
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-pink-400 rounded-full animate-bounce"></div>
+            </div>
+          </div>
+
+          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+            Want accurate psychic readings and fun quizzes?
+          </h3>
+
+          <p className="text-purple-200 text-lg mb-8 max-w-2xl mx-auto">
+            Enter your email and receive our latest predictions!
+          </p>
+
+          <form onSubmit={handleSubscribe} className="max-w-2xl mx-auto">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <div className="relative flex-1">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your cosmic email..."
+                  className="w-full px-6 py-4 text-lg rounded-full bg-white/10 backdrop-blur-sm border-2 border-purple-400/30 text-white placeholder-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400 transition-all duration-300 hover:border-purple-400/50"
+                  required
+                />
+                <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
+                  <Star className="w-5 h-5 text-purple-400" />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubscribing}
+                className="group relative px-8 py-4 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-600 hover:from-purple-600 hover:via-pink-600 hover:to-purple-700 text-white text-lg font-semibold rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap"
+              >
+                <span className="flex items-center justify-center gap-2">
+                  {isSubscribing ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      Subscribing...
+                    </>
+                  ) : (
+                    <>
+                      Subscribe & Explore
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    </>
+                  )}
+                </span>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400/20 to-pink-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </button>
+            </div>
+          </form>
+
+          <p className="text-purple-400 text-xs mt-4">
+            ✨ Join thousands discovering their cosmic destiny daily
+          </p>
+        </div>
+      </div>
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand */}
