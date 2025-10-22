@@ -1,28 +1,23 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'http://astroloveguide.com/' // Replace with your actual domain
+  const baseUrl = 'https://astroloveguide.com' // ✅ Use HTTPS and remove trailing slash
 
   return {
     rules: [
       {
-        userAgent: '*',
+        userAgent: '*', // One unified rule for all bots
         allow: '/',
         disallow: [
-          '/api/', // Block API routes
-          '/_next/', // Block Next.js internal files
-          '/admin/', // Block admin if you have one
-          '/private/', // Block any private sections
+          '/api/', // block API endpoints
+          '/_next/', // internal Next.js files
+          '/admin/', // optional: block admin area
+          '/private/', // optional: block private sections
         ],
       },
       {
-        userAgent: 'Googlebot',
-        allow: '/',
-        disallow: ['/api/', '/_next/'],
-      },
-      {
         userAgent: 'Googlebot-Image',
-        allow: '/',
+        allow: '/', // explicitly allow Google Images
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
